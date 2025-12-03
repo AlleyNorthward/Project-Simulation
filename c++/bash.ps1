@@ -49,7 +49,7 @@ function Delete-All{
     }
 }
 
-function Update-Project{
+function Invoke-Project{
 # 哎, 终于行了. 发现, 原来是powershell脚本跟nanji脚本有冲突...
 # 下面的if else 语句没办法, 只能这么写, 要不然总会出问题...
     param(
@@ -68,20 +68,24 @@ function Update-Project{
     if($Mode -eq "Update"){
         cmake -DCMAKE_BUILD_TYPE="Release" ..
         move-item .\compile_commands.json ..\ -force
+        cd..
     }
     elseif($Mode -eq "Release"){
         cmake -DCMAKE_BUILD_TYPE="Release" ..
         cmake --build .
         move-item .\compile_commands.json ..\ -force
         & .\$Name.exe
+        cd..
     }
     elseif($Mode -eq "Debug"){
         cmake -DCMAKE_BUILD_TYPE="Debug" ..
         cmake --build .
         move-item .\compile_commands.json ..\ -force
         & gdb .\$Name.exe 
+        cd..
     }
     else{
+        cd ..
         if (Test-Path build) {
             Remove-Item build -Recurse -Force
         }
@@ -94,7 +98,6 @@ function Update-Project{
             Remove-Item .cache -Recurse -Force
         }
     }
-    cd..
 }
 
 

@@ -1,7 +1,8 @@
 #include "mymath.hpp"
+#include "function.hpp"
 
 int mathadd(int a, int b){
-    return a + b;
+    return myadd(a, b);
 }
 
 
