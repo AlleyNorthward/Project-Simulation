@@ -6,7 +6,11 @@ function Run-Project{
     }
 
     cd build
-    cmake -DCMAKE_BUILD_TYPE=Release ..
+    cmake `
+        -DCMAKE_BUILD_TYPE=Release `
+        -DCMAKE_C_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/gcc.exe" `
+        -DCMAKE_CXX_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/g++.exe" `
+        ..
     cmake --build .
     move-item .\compile_commands.json ..\ -force
     & .\MyCppApp.exe
@@ -58,7 +62,11 @@ function Invoke-Project{
 
         [Alias("M")]
         [ValidateSet("Debug", "Release", "Update", "Delete")]
-        [string]$Mode = "Release"
+        [string]$Mode = "Release",
+
+        [Alias("C")]
+        [ValidateSet("C", "CXX", "C_CXX")]
+        [string]$Compiler = "C"
     )
     if (-not (Test-Path build)) {
         New-Item -ItemType Directory build | Out-Null 
@@ -66,19 +74,73 @@ function Invoke-Project{
 
     cd build
     if($Mode -eq "Update"){
-        cmake -DCMAKE_BUILD_TYPE="Release" ..
+        if($Compiler -eq "C"){
+            cmake `
+                -DCMAKE_BUILD_TYPE=Release `
+                -DCMAKE_C_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/gcc.exe" `
+                ..
+        }
+        elseif($Compiler -eq "CXX"){
+            cmake `
+                -DCMAKE_BUILD_TYPE=Release `
+                -DCMAKE_CXX_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/g++.exe" `
+                ..
+        }
+        else{
+            cmake `
+                -DCMAKE_BUILD_TYPE=Release `
+                -DCMAKE_C_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/gcc.exe" `
+                -DCMAKE_CXX_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/g++.exe" `
+                ..
+        }
         move-item .\compile_commands.json ..\ -force
         cd..
     }
     elseif($Mode -eq "Release"){
-        cmake -DCMAKE_BUILD_TYPE="Release" ..
+        if($Compiler -eq "C"){
+            cmake `
+                -DCMAKE_BUILD_TYPE=Release `
+                -DCMAKE_C_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/gcc.exe" `
+                ..
+        }
+        elseif($Compiler -eq "CXX"){
+            cmake `
+                -DCMAKE_BUILD_TYPE=Release `
+                -DCMAKE_CXX_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/g++.exe" `
+                ..
+        }
+        else{
+            cmake `
+                -DCMAKE_BUILD_TYPE=Release `
+                -DCMAKE_C_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/gcc.exe" `
+                -DCMAKE_CXX_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/g++.exe" `
+                ..
+        }
         cmake --build .
         move-item .\compile_commands.json ..\ -force
         & .\$Name.exe
         cd..
     }
     elseif($Mode -eq "Debug"){
-        cmake -DCMAKE_BUILD_TYPE="Debug" ..
+        if($Compiler -eq "C"){
+            cmake `
+                -DCMAKE_BUILD_TYPE=Debug `
+                -DCMAKE_C_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/gcc.exe" `
+                ..
+        }
+        elseif($Compiler -eq "CXX"){
+            cmake `
+                -DCMAKE_BUILD_TYPE=Debug `
+                -DCMAKE_CXX_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/g++.exe" `
+                ..
+        }
+        else{
+            cmake `
+                -DCMAKE_BUILD_TYPE=Debug `
+                -DCMAKE_C_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/gcc.exe" `
+                -DCMAKE_CXX_COMPILER="F:/Qt/Qt.6.9/Tools/mingw1310_64/bin/g++.exe" `
+                ..
+        }
         cmake --build .
         move-item .\compile_commands.json ..\ -force
         & gdb .\$Name.exe 
