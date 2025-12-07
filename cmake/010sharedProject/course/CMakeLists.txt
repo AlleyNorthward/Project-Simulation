@@ -11,9 +11,10 @@ file(
     LIB1_INCLUDE
     "include/*.hpp"
 )
+
 add_library(
     ${courseLib}
-    STATIC
+    SHARED
     ${LIB1_SRC}
     ${LIB1_INCLUDE}
 )
@@ -22,5 +23,11 @@ target_include_directories(
     ${courseLib}
     PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
+)
+
+target_compile_definitions(
+    ${courseLib}
+    PRIVATE
+    courseLibExport
 )
 

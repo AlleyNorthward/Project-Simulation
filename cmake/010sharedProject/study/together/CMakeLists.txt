@@ -14,7 +14,7 @@ file(
 
 add_library(
     ${study_togetherLib}
-    STATIC
+    SHARED
     ${LIB1_SRC}
     ${LIB1_INCLUDE}
 )
@@ -23,4 +23,10 @@ target_include_directories(
     ${study_togetherLib}
     PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
+)
+
+target_compile_definitions(
+    ${study_togetherLib}
+    PRIVATE
+    study_togetherLibExport
 )

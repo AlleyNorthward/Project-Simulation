@@ -1,5 +1,6 @@
 set(study_selfLib "study_selflib")
 
+
 file(
     GLOB
     LIB1_SRC
@@ -14,7 +15,7 @@ file(
 
 add_library(
     ${study_selfLib}
-    STATIC
+    SHARED
     ${LIB1_SRC}
     ${LIB1_INCLUDE}
 )
@@ -26,6 +27,11 @@ target_include_directories(
 )
 
 
+target_compile_definitions(
+    ${study_selfLib}
+    PRIVATE
+    study_selfLibExport
+)
 
 
 

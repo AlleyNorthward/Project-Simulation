@@ -18,7 +18,7 @@ else()
     set(SEARCH_DIR ${CMAKE_SOURCE_DIR})
 endif()
 
-set(ENTRY "main")
+set(ENTRY "main" CACHE STRING "命令吧.")
 
 add_executable(
     ${ENTRY}
