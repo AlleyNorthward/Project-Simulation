@@ -15,3 +15,4 @@ add_subdirectory(mathlib)
 add_executable(MyCppApp src/main.cpp)
 
 target_link_libraries(MyCppApp PRIVATE utils mathlib)
+
