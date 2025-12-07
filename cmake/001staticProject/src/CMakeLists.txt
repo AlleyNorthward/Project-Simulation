@@ -1,4 +1,8 @@
-option(IS_ROOT "是否为根?" ON)
+if (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
+    option(IS_ROOT "是否为根?" ON)
+else()
+    option(IS_ROOT "是否为根?" OFF)
+endif()
 
 if (IS_ROOT)
     cmake_minimum_required(VERSION 3.20)
@@ -11,7 +15,7 @@ if (IS_ROOT)
     get_filename_component(SEARCH_DIR "${CMAKE_SOURCE_DIR}" DIRECTORY)
 else()
     set(CURRENT_ROOT ${CMAKE_SOURCE_DIR})
-    set(SEARCH_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+    set(SEARCH_DIR ${CMAKE_SOURCE_DIR})
 endif()
 
 set(ENTRY "main")
