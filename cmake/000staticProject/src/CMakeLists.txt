@@ -11,7 +11,6 @@ target_include_directories(
     "${PROJECT_SOURCE_DIR}/name/include"
 )
 
-
 target_link_libraries(
     ${ENTRY}
     ${courseLib}
