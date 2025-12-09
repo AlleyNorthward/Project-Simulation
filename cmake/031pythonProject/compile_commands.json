@@ -1,0 +1,20 @@
+[
+{
+  "directory": "F:/0github/Project-Simulation/cmake/030pythonProject/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -Ddata_structure_EXPORTS -IF:/0github/Project-Simulation/cmake/030pythonProject/transform/include -IF:/0github/Project-Simulation/cmake/030pythonProject/data_structure/include -isystem E:/Anaconda3/envs/AI/include -isystem F:/0github/Project-Simulation/cmake/030pythonProject/pybind11/include -std=gnu++17 -fvisibility=hidden -o CMakeFiles\\data_structure.dir\\bind.cpp.obj -c F:\\0github\\Project-Simulation\\cmake\\030pythonProject\\bind.cpp",
+  "file": "F:\\0github\\Project-Simulation\\cmake\\030pythonProject\\bind.cpp",
+  "output": "CMakeFiles\\data_structure.dir\\bind.cpp.obj"
+},
+{
+  "directory": "F:/0github/Project-Simulation/cmake/030pythonProject/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\gcc.exe -IF:/0github/Project-Simulation/cmake/030pythonProject/data_structure/include -o data_structure\\CMakeFiles\\data_structurelib.dir\\src\\sqlist.c.obj -c F:\\0github\\Project-Simulation\\cmake\\030pythonProject\\data_structure\\src\\sqlist.c",
+  "file": "F:\\0github\\Project-Simulation\\cmake\\030pythonProject\\data_structure\\src\\sqlist.c",
+  "output": "data_structure\\CMakeFiles\\data_structurelib.dir\\src\\sqlist.c.obj"
+},
+{
+  "directory": "F:/0github/Project-Simulation/cmake/030pythonProject/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Project-Simulation/cmake/030pythonProject/transform/include -IF:/0github/Project-Simulation/cmake/030pythonProject/data_structure/include -std=gnu++17 -o transform\\CMakeFiles\\transformlib.dir\\src\\transform.cpp.obj -c F:\\0github\\Project-Simulation\\cmake\\030pythonProject\\transform\\src\\transform.cpp",
+  "file": "F:\\0github\\Project-Simulation\\cmake\\030pythonProject\\transform\\src\\transform.cpp",
+  "output": "transform\\CMakeFiles\\transformlib.dir\\src\\transform.cpp.obj"
+}
+]

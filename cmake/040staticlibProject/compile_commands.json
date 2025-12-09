@@ -1,0 +1,8 @@
+[
+{
+  "directory": "F:/0github/Project-Simulation/cmake/040staticlibProject/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\gcc.exe -isystem F:/0github/Project-Simulation/cmake/040staticlibProject/data_structurelib/include -std=gnu99 -o CMakeFiles\\main.dir\\main.c.obj -c F:\\0github\\Project-Simulation\\cmake\\040staticlibProject\\main.c",
+  "file": "F:\\0github\\Project-Simulation\\cmake\\040staticlibProject\\main.c",
+  "output": "CMakeFiles\\main.dir\\main.c.obj"
+}
+]

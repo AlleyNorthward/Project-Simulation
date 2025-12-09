@@ -19,12 +19,8 @@ add_library(
     ${LIB1_INCLUDE}
 )
 
-
 target_include_directories(
     ${data_structureLib}
     PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
-
-
-
