@@ -1,0 +1,38 @@
+[
+{
+  "directory": "F:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/internal -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/implementation/list/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/implementation/table/include -std=gnu++20 -o CMakeFiles\\main.dir\\main.cpp.obj -c F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\main.cpp",
+  "file": "F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\main.cpp",
+  "output": "CMakeFiles\\main.dir\\main.cpp.obj"
+},
+{
+  "directory": "F:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/internal -std=gnu++20 -o web-page\\interface\\CMakeFiles\\interfacelib.dir\\src\\Data.cpp.obj -c F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\interface\\src\\Data.cpp",
+  "file": "F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\interface\\src\\Data.cpp",
+  "output": "web-page\\interface\\CMakeFiles\\interfacelib.dir\\src\\Data.cpp.obj"
+},
+{
+  "directory": "F:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/internal -std=gnu++20 -o web-page\\interface\\CMakeFiles\\interfacelib.dir\\src\\Link.cpp.obj -c F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\interface\\src\\Link.cpp",
+  "file": "F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\interface\\src\\Link.cpp",
+  "output": "web-page\\interface\\CMakeFiles\\interfacelib.dir\\src\\Link.cpp.obj"
+},
+{
+  "directory": "F:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/internal -std=gnu++20 -o web-page\\interface\\CMakeFiles\\interfacelib.dir\\src\\Page.cpp.obj -c F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\interface\\src\\Page.cpp",
+  "file": "F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\interface\\src\\Page.cpp",
+  "output": "web-page\\interface\\CMakeFiles\\interfacelib.dir\\src\\Page.cpp.obj"
+},
+{
+  "directory": "F:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/implementation/list/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/internal -std=gnu++20 -o web-page\\implementation\\list\\CMakeFiles\\listlib.dir\\src\\dummy.cpp.obj -c F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\implementation\\list\\src\\dummy.cpp",
+  "file": "F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\implementation\\list\\src\\dummy.cpp",
+  "output": "web-page\\implementation\\list\\CMakeFiles\\listlib.dir\\src\\dummy.cpp.obj"
+},
+{
+  "directory": "F:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/implementation/table/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/include -IF:/0github/Object-Oriented-Analysis-and-Design/learn/creational-patterns/abstract_factory/rewrite_patterns/web-page/interface/internal -std=gnu++20 -o web-page\\implementation\\table\\CMakeFiles\\tablelib.dir\\src\\dummy.cpp.obj -c F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\implementation\\table\\src\\dummy.cpp",
+  "file": "F:\\0github\\Object-Oriented-Analysis-and-Design\\learn\\creational-patterns\\abstract_factory\\rewrite_patterns\\web-page\\implementation\\table\\src\\dummy.cpp",
+  "output": "web-page\\implementation\\table\\CMakeFiles\\tablelib.dir\\src\\dummy.cpp.obj"
+}
+]
