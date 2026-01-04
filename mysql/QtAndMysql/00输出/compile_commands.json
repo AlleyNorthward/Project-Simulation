@@ -1,0 +1,14 @@
+[
+{
+  "directory": "F:/0github/Project-Simulation/mysql/QtAndMysql/00输出/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_NO_DEBUG -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IF:/0github/Project-Simulation/mysql/QtAndMysql/00输出/build/main_autogen/include -isystem F:/Qt/Qt.6.9/6.9.3/mingw_64/include/QtCore -isystem F:/Qt/Qt.6.9/6.9.3/mingw_64/include -isystem F:/Qt/Qt.6.9/6.9.3/mingw_64/mkspecs/win32-g++ -std=gnu++17 -o CMakeFiles\\main.dir\\main_autogen\\mocs_compilation.cpp.obj -c F:\\0github\\Project-Simulation\\mysql\\QtAndMysql\\00输出\\build\\main_autogen\\mocs_compilation.cpp",
+  "file": "F:\\0github\\Project-Simulation\\mysql\\QtAndMysql\\00输出\\build\\main_autogen\\mocs_compilation.cpp",
+  "output": "CMakeFiles\\main.dir\\main_autogen\\mocs_compilation.cpp.obj"
+},
+{
+  "directory": "F:/0github/Project-Simulation/mysql/QtAndMysql/00输出/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_NO_DEBUG -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IF:/0github/Project-Simulation/mysql/QtAndMysql/00输出/build/main_autogen/include -isystem F:/Qt/Qt.6.9/6.9.3/mingw_64/include/QtCore -isystem F:/Qt/Qt.6.9/6.9.3/mingw_64/include -isystem F:/Qt/Qt.6.9/6.9.3/mingw_64/mkspecs/win32-g++ -std=gnu++17 -o CMakeFiles\\main.dir\\main.cpp.obj -c F:\\0github\\Project-Simulation\\mysql\\QtAndMysql\\00输出\\main.cpp",
+  "file": "F:\\0github\\Project-Simulation\\mysql\\QtAndMysql\\00输出\\main.cpp",
+  "output": "CMakeFiles\\main.dir\\main.cpp.obj"
+}
+]

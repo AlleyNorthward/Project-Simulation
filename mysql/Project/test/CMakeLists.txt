@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.25)
+
+if(USE_TEST STREQUAL "sql")
+  add_executable(main sql_test.cpp)
+  target_link_libraries(main PRIVATE sqlLib)
+elseif(USE_TEST STREQUAL "login")
+  add_executable(main login_test.cpp)
+  target_link_libraries(main PRIVATE loginLib)
+else()
+  message(FATAL_ERROR "无效选项: ${USE_TEST}")
+endif()
