@@ -22,5 +22,6 @@ target_compile_features(
 target_link_libraries(
   sqlLib
   PUBLIC
+  utilsLib
   Qt6::Sql
 )

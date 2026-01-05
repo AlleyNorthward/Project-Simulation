@@ -1,4 +1,6 @@
 #include "LoginWindow.hpp"
+#include "path.hpp"
+#include "out.hpp"
 #include <QDir>
 #include <QIcon>
 #include <QVBoxLayout>
@@ -12,11 +14,8 @@ LoginWindow::~LoginWindow() {}
 
 void LoginWindow::setupWindow() {
   setWindowTitle("酒店管理系统 - 登录");
-
   resize(1300, 660);
-
-  QDir dir(QDir::currentPath());
-  QString iconPath = dir.filePath("assets/icons/00hotel.png");
+  QString iconPath = utils::get_file_path("assets/icons/00hotel.png");
   setWindowIcon(QIcon(iconPath));
 }
 

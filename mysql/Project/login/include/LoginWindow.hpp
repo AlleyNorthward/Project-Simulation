@@ -4,7 +4,6 @@
 #include <QLabel>
 #include <QTimer>
 #include <QWidget>
-#include <qcontainerfwd.h>
 
 class LoginWindow : public QWidget {
   Q_OBJECT

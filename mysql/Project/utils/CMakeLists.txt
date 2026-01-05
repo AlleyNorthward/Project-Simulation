@@ -1,36 +1,26 @@
 cmake_minimum_required(VERSION 3.25)
 
 add_library(
-  loginLib
+  utilsLib
   STATIC
-  include/LoginWindow.hpp
-  src/LoginWindow.cpp
+  src/path.cpp
 )
 
 target_include_directories(
-  loginLib
+  utilsLib
   PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
 
 target_compile_features(
-  loginLib
+  utilsLib
   PUBLIC
   cxx_std_17
 )
 
-set_target_properties(
-  loginLib
-  PROPERTIES
-  AUTOMOC ON
-  AUTOUIC ON
-  AUTORCC ON
-)
-
 target_link_libraries(
-  loginLib
-  PUBLIC
   utilsLib
-  Qt6::Widgets
+  PUBLIC
+  Qt6::Core
 )

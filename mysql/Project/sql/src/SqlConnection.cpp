@@ -1,4 +1,5 @@
 #include "SqlConnection.hpp"
+#include "out.hpp"
 #include <QDebug>
 #include <QSqlError>
 #include <QUuid>
@@ -28,9 +29,11 @@ bool SqlConnection::open(const QString &database, const QString &databasename,
   db.setUserName(user);
   db.setPassword(password);
   if (!db.open()) {
-    qWarning() << "failed:" << db.lastError().text();
+    utils::out() << "连接失败" << db.lastError().text();
     return false;
+
   }
+  utils::out() << "数据库连接成功!" << utils::endl;
   return true;
 }
 
