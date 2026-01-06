@@ -10,4 +10,5 @@ int main(int argc, char* argv[]){
   utils::out() << b << utils::endl;
   utils::out() << "你好, 哈哈" << utils::endl;
   utils::out() << "山东科技大学" << utils::endl;
+  utils::out() << "你好, 嘿嘿嘿哈" << utils::endl;
 }

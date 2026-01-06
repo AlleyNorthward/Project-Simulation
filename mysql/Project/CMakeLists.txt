@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 可选择编译模块: sql login utils
-set(COMPILE_MODULE login)
+set(COMPILE_MODULE utils)
 set(USE_TEST ${COMPILE_MODULE} CACHE STRING "灵活选择编译")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Sql Widgets)
