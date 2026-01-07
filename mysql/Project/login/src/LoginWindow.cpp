@@ -1,6 +1,6 @@
 #include "LoginWindow.hpp"
-#include "path.hpp"
 #include "out.hpp"
+#include "path.hpp"
 #include <QDir>
 #include <QIcon>
 #include <QVBoxLayout>
@@ -17,6 +17,7 @@ void LoginWindow::setupWindow() {
   resize(1300, 660);
   QString iconPath = utils::get_file_path("assets/icons/00hotel.png");
   setWindowIcon(QIcon(iconPath));
+  utils::out() << "酒店管理系统创建成功!" << utils::endl;
 }
 
 void LoginWindow::setupSlider() {
@@ -24,9 +25,14 @@ void LoginWindow::setupSlider() {
   imageLabel->setAlignment(Qt::AlignCenter);
   imageLabel->setFixedSize(600, 300);
 
+  // 这里是debug模式的. 怎么能使能开启或关闭呢?
+  imageLabel->setStyleSheet("background-color: red;"
+                            "border: 2px solid blue;");
+
   QDir dir(QDir::currentPath() + "/assets/login");
-  images << dir.filePath("1.png") << dir.filePath("2.png")
-         << dir.filePath("3.png") << dir.filePath("4.png");
+  images << dir.filePath("1.jpg") << dir.filePath("2.jpg")
+         << dir.filePath("3.jpg") << dir.filePath("4.jpg")
+         << dir.filePath("5.jpg");
 
   if (!images.isEmpty()) {
     imageLabel->setPixmap(QPixmap(images[this->currentIndex])
@@ -39,7 +45,12 @@ void LoginWindow::setupSlider() {
   timer->start(3000);
 
   QVBoxLayout *layout = new QVBoxLayout(this);
-  layout->addWidget(imageLabel);
+  layout->addWidget(imageLabel, 0, Qt::AlignHCenter);
+  layout->addSpacing(200);
+
+  // QHBoxLayout *hlayout = new QHBoxLayout;
+  // hlayout->addWidget(imageLabel);
+  // hlayout->addSpacing(50);
   setLayout(layout);
 }
 

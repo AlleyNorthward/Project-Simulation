@@ -9,6 +9,7 @@
     - [_LoginWindow](#_LoginWindow)
     - [setupWindow](#setupWindow)
     - [setupSlider](#setupSlider)
+- [控件摆放](#控件摆放)
 
 
 ## LoginWindow
