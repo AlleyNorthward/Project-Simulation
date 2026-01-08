@@ -13,7 +13,8 @@ void _LoginWindow::setupWindow(){
 }
 
 void _LoginWindow::setupSlider(){
-  
+  imageLabel = new QLabel(this);
+  imageLabel->setAlignment(Qt::AlignCenter);
 }
 
 

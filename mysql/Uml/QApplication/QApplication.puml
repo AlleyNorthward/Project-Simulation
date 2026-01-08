@@ -1,0 +1,7 @@
+@startuml QApplication
+class QApplication{
+    --方法--
+    + QApplication(int argc, char* argv)
+    + exec()
+}
+@enduml

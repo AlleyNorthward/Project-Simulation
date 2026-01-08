@@ -1,0 +1,20 @@
+@startuml QPixmap
+class QPixmap{
+  ==方法==
+  --基本方法--
+  + scaled(?)
+}
+
+@enduml
+
+
+
+
+
+
+
+
+
+
+
+

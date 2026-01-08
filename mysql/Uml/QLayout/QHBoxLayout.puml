@@ -1,0 +1,21 @@
+@startuml QHBoxLayout
+
+class QHBoxLayout{
+  ==方法==
+  --基本方法--
+
+}
+
+@enduml
+
+
+
+
+
+
+
+
+
+
+
+

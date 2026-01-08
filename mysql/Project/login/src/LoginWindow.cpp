@@ -23,7 +23,7 @@ void LoginWindow::setupWindow() {
 void LoginWindow::setupSlider() {
   imageLabel = new QLabel(this);
   imageLabel->setAlignment(Qt::AlignCenter);
-  imageLabel->setFixedSize(600, 300);
+  imageLabel->setFixedSize(this->width(), this->height() / 1.3);
 
   // 这里是debug模式的. 怎么能使能开启或关闭呢?
   imageLabel->setStyleSheet("background-color: red;"

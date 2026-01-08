@@ -1,0 +1,18 @@
+@startuml QVBoxLayout
+class QVBoxLayout{
+  ==方法==
+  --基本方法--
+}
+@enduml
+
+
+
+
+
+
+
+
+
+
+
+

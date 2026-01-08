@@ -1,0 +1,26 @@
+@startuml QWidget
+class QWidget{
+  ==方法==
+  --基本方法--
+  + height()
+  + width()
+  + setWindowTitle()
+  + setWindowIcon()
+  + resize()
+  + setFixedSize()
+  + show()
+  --其它方法--
+}
+@enduml
+
+
+
+
+
+
+
+
+
+
+
+
