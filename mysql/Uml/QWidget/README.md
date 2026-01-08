@@ -22,6 +22,7 @@
 # 控件
 ## QWidget
 - 这个不多说了. 本来整体上是只专门说这一个的. 不过写的时候, 发现几乎所有的控件都是其子类, 方法几乎是通用的, 所以专门来这里说上一嘴. 
+- 关键函数, 摆放函数, `setLayout()`. 这个函数呢, 就是决定其摆放层级的, 非常关键. 确定了这个, 我们才能很好地确定其它东西. 
 ## QLabel
 - `setAlignment(Qt::AlignCenter)` 这个方法不是`QWidget`的通用方法, 而是少数几个的成员方法, 但是我用的是`Lable`, 所以就放到这里来了. 
 - 一开始看到这个, 我以为是指的它在父类(`QWidget`)中摆放的位置. 后来发现并不是, 而是控件在其内部摆放的方式. 也就是居中摆放. 所以, 如果想让`QLabel`相对父类居中摆放, 这个方法行不通. 
@@ -32,6 +33,17 @@
 - 然后就是缩放了. 有一个方法, 是`.scaled()`. 第一个参数呢, 一般传入的是`label`的`size()`, `size()`是一个对象, 同时包括`height`与`width`, 这样统一操作比较方便. 
 - 然后呢, 图片就会根据这个来进行缩放. 之后, 还有几个参数, `Qt::KeepAspectRatio,Qt::SmoothTransformation)` 第一个是保持图像长宽比, 比较固定的, 第二个则是平滑转动. 
 - 现在存在的问题是, 如何精确控制呢? 因为长宽比固定, 这样图片大小无法完美匹配. 
+- 知道问题了. 对于其`.scaled()`的方法呢, 是返回一个新的对象, 所以下面的写法, 必然不正确. 
+
+~~~cpp
+  QString imagePath = utils::get_file_path("assets/login/2.jpg");
+  QPixmap image(imagePath);
+  image.scaled(label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+  label->setPixmap(image);
+~~~
+
+- 对于`image`而言, 其中的`scaled`, 并不是对当前对象`scaled`, 而是会返回一个新的对象, 但是不会改变原来的对象. 所以, image其实并没有被`scaled`. 
+- 不过呢, 这样也让我找到了一种能够统一比例的方案, 也算是因祸得福吧. 
 
 # 高级玩法
 ## frame思想

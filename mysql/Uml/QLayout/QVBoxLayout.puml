@@ -2,6 +2,11 @@
 class QVBoxLayout{
   ==方法==
   --基本方法--
+  + addWidget(QWidget*, int stretch, Qt::Alignment)
+  + addLayout(QLayout*, int stretch)
+  + addSpacing(int size)
+  + addSpacing(int stretch)
+  + setAlignment(Qt::ALignment)
 }
 @enduml
 

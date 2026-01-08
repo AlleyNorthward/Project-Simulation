@@ -32,12 +32,15 @@ void LoginWindow::setupSlider() {
   QDir dir(QDir::currentPath() + "/assets/login");
   images << dir.filePath("1.jpg") << dir.filePath("2.jpg")
          << dir.filePath("3.jpg") << dir.filePath("4.jpg")
-         << dir.filePath("5.jpg");
+         << dir.filePath("5.jpg") << dir.filePath("6.jpg")
+         << dir.filePath("7.jpg") << dir.filePath("8.jpg")
+         << dir.filePath("9.jpg") << dir.filePath("10.jpg");
 
   if (!images.isEmpty()) {
     imageLabel->setPixmap(QPixmap(images[this->currentIndex])
                               .scaled(imageLabel->size(), Qt::KeepAspectRatio,
                                       Qt::SmoothTransformation));
+    // imageLabel->setPixmap(QPixmap(images[this->currentIndex]));
   }
 
   timer = new QTimer(this);
@@ -47,18 +50,14 @@ void LoginWindow::setupSlider() {
   QVBoxLayout *layout = new QVBoxLayout(this);
   layout->addWidget(imageLabel, 0, Qt::AlignHCenter);
   layout->addSpacing(200);
-
-  // QHBoxLayout *hlayout = new QHBoxLayout;
-  // hlayout->addWidget(imageLabel);
-  // hlayout->addSpacing(50);
-  setLayout(layout);
 }
 
 void LoginWindow::nextImage() {
   if (images.isEmpty())
     return;
   currentIndex = (currentIndex + 1) % images.size();
-  imageLabel->setPixmap(QPixmap(images[currentIndex])
+  imageLabel->setPixmap(QPixmap(images[this->currentIndex])
                             .scaled(imageLabel->size(), Qt::KeepAspectRatio,
                                     Qt::SmoothTransformation));
+  // imageLabel->setPixmap(QPixmap(images[this->currentIndex]));
 }
