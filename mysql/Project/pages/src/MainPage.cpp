@@ -1,48 +1,12 @@
-#include <QApplication>
-#include <QComboBox>
-#include <QFormLayout>
-#include <QHeaderView>
-#include <QLabel>
-#include <QLineEdit>
-#include <QMainWindow>
-#include <QPushButton>
-#include <QSortFilterProxyModel>
-#include <QStandardItemModel>
-#include <QTabWidget>
-#include <QTableView>
-#include <QTextEdit>
+#include "MainPage.hpp"
 #include <QVBoxLayout>
-#include <QWidget>
-#include <QDebug>
-
-class MainPage : public QMainWindow {
-  Q_OBJECT
-public:
-  MainPage(QWidget *parent = nullptr);
-
-private:
-  void setupHome();
-  void setupRooms();
-  void setupBooking();
-  void setupOrders();
-  void setupSettings();
-  void setupTabs();
-  void addTabs();
-
-signals:
-  void requestLogout();
-
-private:
-  QTabWidget* tabs{nullptr};
-  QWidget* home{nullptr};
-  QWidget* rooms{nullptr};      // 改为 QWidget*
-  QWidget* booking{nullptr};
-  QWidget* orders{nullptr};
-  QWidget* settings{nullptr};
-};
+#include <QFormLayout>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QTextEdit>
+#include <QPushButton>
 
 MainPage::MainPage(QWidget* parent):QMainWindow(parent){
-  qDebug() << "MainPage ctor start";
   this->setupTabs();
   this->setupHome();
   this->setupRooms();
@@ -51,11 +15,11 @@ MainPage::MainPage(QWidget* parent):QMainWindow(parent){
   this->setupSettings();
   this->addTabs();
   setCentralWidget(tabs);
-  qDebug() << "MainPage ctor end";
+  resize(1300, 660);
 }
 
 void MainPage::setupTabs(){
-  tabs = new QTabWidget;
+  this->tabs = new QTabWidget;
   tabs->setTabsClosable(false);
   tabs->setMovable(false);
   tabs->setTabPosition(QTabWidget::North);
@@ -65,6 +29,7 @@ void MainPage::setupHome(){
   home = new QWidget;
   auto* v = new QVBoxLayout(home);
   auto* title = new QLabel("<h2>欢迎使用酒店管理系统</h2>");
+
   v->addWidget(title);
   v->addWidget(new QLabel("概览: 今日入住 X 间, 空闲 Y 间"));
   v->addStretch();
@@ -78,8 +43,8 @@ void MainPage::setupRooms(){
 }
 
 void MainPage::setupBooking(){
-  booking = new QWidget;                    // 必须先 new
-  auto* form = new QFormLayout(booking);    // 将布局设置到 booking
+  booking = new QWidget;
+  auto* form = new QFormLayout(booking);
   form->addRow("客户姓名:", new QLineEdit);
   form->addRow("入住日期:", new QLineEdit);
   form->addRow("退房日期:", new QLineEdit);
@@ -89,14 +54,14 @@ void MainPage::setupBooking(){
 }
 
 void MainPage::setupOrders(){
-  orders = new QWidget;                     // 先 new
+  orders = new QWidget;
   auto *v = new QVBoxLayout(orders);
   v->addWidget(new QLabel("订单列表（示例）"));
   v->addStretch();
 }
 
 void MainPage::setupSettings(){
-  settings = new QWidget;                   // 先 new
+  settings = new QWidget;
   auto *v = new QVBoxLayout(settings);
   v->addWidget(new QLabel("系统设置"));
   v->addStretch();
@@ -110,11 +75,10 @@ void MainPage::addTabs(){
   tabs->addTab(settings, "设置");
 }
 
-int main(int argc, char *argv[]) {
-  QApplication a(argc, argv);
-  MainPage w;
-  w.show();
-  return a.exec();
-}
 
-#include "auto_test.moc"
+
+
+
+
+
+

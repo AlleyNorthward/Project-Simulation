@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(M "auto" CACHE STRING "外部调用短名")
-set(COMPILE_MODULE ${M} CACHE STRING "内部使用完整名. 可选编译模块:login/utils/sql/auto")
+set(COMPILE_MODULE ${M} CACHE STRING "内部使用完整名. 可选编译模块:login/utils/sql/auto/pages")
 
 message(STATUS "当前编译模块:${COMPILE_MODULE}")
 
@@ -17,6 +17,12 @@ if(NOT ${COMPILE_MODULE} STREQUAL "utils")
   # 但是现在也暴露了一个问题, 随着后续文件增多, 这里会变得愈发复杂. 又应当如何测试呢? 
 
   add_subdirectory(utils)
+endif()
+
+if(${COMPILE_MODULE} STREQUAL "pages")
+  # 确实. 你看, 等到以后的话, 各种依赖, 各种`if`语句, 越来越多, 还能记得谁是谁吗?
+  # 我觉得, 不如给给一种情况写个if语句, 这样就舒服很多了. 总之不杂乱.
+  add_subdirectory(login)
 endif()
 
 if(NOT ${COMPILE_MODULE} STREQUAL "auto")
