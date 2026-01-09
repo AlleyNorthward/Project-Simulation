@@ -2,15 +2,31 @@
 #include "out.hpp"
 #include "path.hpp"
 #include <QDir>
+#include <QHBoxLayout>
 #include <QIcon>
+#include <QLineEdit>
+#include <QPushButton>
 #include <QVBoxLayout>
 
 LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
+  setupAllPictures();
   setupWindow();
   setupSlider();
+  setupInput();
+
+  QVBoxLayout *layout = new QVBoxLayout(this);
+  QHBoxLayout *h_layout = new QHBoxLayout;
+  h_layout->addStretch(1);
+  h_layout->addWidget(imageLabel, 10);
+  h_layout->addStretch(1);
+  layout->addLayout(h_layout, 8);
+  layout->addWidget(inputWidget, 2);
 }
 
-LoginWindow::~LoginWindow() {}
+LoginWindow::~LoginWindow() {
+  if (timer)
+    timer->stop();
+}
 
 void LoginWindow::setupWindow() {
   setWindowTitle("酒店管理系统 - 登录");
@@ -23,41 +39,137 @@ void LoginWindow::setupWindow() {
 void LoginWindow::setupSlider() {
   imageLabel = new QLabel(this);
   imageLabel->setAlignment(Qt::AlignCenter);
-  imageLabel->setFixedSize(this->width(), this->height() / 1.3);
+  // imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  // imageLabel->setFixedHeight(this->height() / 1.3);
+  imageLabel->setScaledContents(true);
+  imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
   // 这里是debug模式的. 怎么能使能开启或关闭呢?
   imageLabel->setStyleSheet("background-color: red;"
                             "border: 2px solid blue;");
-
-  QDir dir(QDir::currentPath() + "/assets/login");
-  images << dir.filePath("1.jpg") << dir.filePath("2.jpg")
-         << dir.filePath("3.jpg") << dir.filePath("4.jpg")
-         << dir.filePath("5.jpg") << dir.filePath("6.jpg")
-         << dir.filePath("7.jpg") << dir.filePath("8.jpg")
-         << dir.filePath("9.jpg") << dir.filePath("10.jpg");
-
-  if (!images.isEmpty()) {
-    imageLabel->setPixmap(QPixmap(images[this->currentIndex])
-                              .scaled(imageLabel->size(), Qt::KeepAspectRatio,
-                                      Qt::SmoothTransformation));
-    // imageLabel->setPixmap(QPixmap(images[this->currentIndex]));
-  }
-
   timer = new QTimer(this);
   connect(timer, &QTimer::timeout, this, &LoginWindow::nextImage);
   timer->start(3000);
-
-  QVBoxLayout *layout = new QVBoxLayout(this);
-  layout->addWidget(imageLabel, 0, Qt::AlignHCenter);
-  layout->addSpacing(200);
 }
 
 void LoginWindow::nextImage() {
   if (images.isEmpty())
     return;
   currentIndex = (currentIndex + 1) % images.size();
-  imageLabel->setPixmap(QPixmap(images[this->currentIndex])
-                            .scaled(imageLabel->size(), Qt::KeepAspectRatio,
-                                    Qt::SmoothTransformation));
-  // imageLabel->setPixmap(QPixmap(images[this->currentIndex]));
+  updateImage();
+}
+
+void LoginWindow::updateImage() {
+  if (images.isEmpty())
+    return;
+  // imageLabel->setPixmap(pix.scaled(imageLabel->size(), Qt::KeepAspectRatio,
+  //                                  Qt::SmoothTransformation));
+  imageLabel->setPixmap(this->pixmaps[this->currentIndex]);
+}
+
+void LoginWindow::showEvent(QShowEvent *event) {
+  QWidget::showEvent(event);
+  this->updateImage();
+}
+
+void LoginWindow::setupAllPictures() {
+  this->currentIndex = 0;
+  QDir dir(QDir::currentPath() + "/assets/login");
+  for (int i = 1; i <= 10; i++) {
+    images << dir.filePath(QString::number(i) + ".jpg");
+  }
+
+  for (const auto &path : images) {
+    pixmaps.push_back(QPixmap(path));
+  }
+}
+
+void LoginWindow::setupInput() { inputWidget = new _QLogin(this); }
+
+_QLogin::_QLogin(QWidget *parent) : QWidget(parent) {
+  this->setupFrame();
+  this->setupOthers();
+}
+
+void _QLogin::setupFrame() {
+  auto *v_frame = new QVBoxLayout(this);
+  auto *h_frame = new QHBoxLayout;
+  frame = new QFrame(this);
+  frame->setObjectName("loginFrame");
+  frame->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+  frame->setStyleSheet(R"(
+        QFrame#loginFrame {
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.95);
+        }
+    )");
+  h_frame->addStretch(2);
+  h_frame->addWidget(frame, 1);
+  h_frame->addStretch(2);
+  v_frame->addLayout(h_frame);
+}
+
+void _QLogin::setupOthers() {
+  auto *v = new QVBoxLayout(frame);
+  auto *label = new QLabel("请登录", frame);
+  // label->setStyleSheet("background:red;");
+  v->addWidget(label, 0, Qt::AlignCenter);
+  username = new QLineEdit(this);
+  username->setPlaceholderText("用户名");
+  username->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  username->setFixedHeight(32);
+  username->setStyleSheet(R"(
+        QLineEdit {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 6px 8px;
+            font-size: 14px;
+        }
+        QLineEdit:focus {
+            border: 1px solid #409EFF;
+        }
+    )");
+  auto *h_user = new QHBoxLayout;
+  h_user->addStretch(1);
+  h_user->addWidget(username, 5);
+  h_user->addStretch(1);
+  v->addLayout(h_user);
+
+  password = new QLineEdit(this);
+  password->setPlaceholderText("密码");
+  password->setEchoMode(QLineEdit::Password);
+  password->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  password->setFixedHeight(32);
+  password->setStyleSheet(R"(
+        QLineEdit {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 6px 8px;
+            font-size: 14px;
+        }
+        QLineEdit:focus {
+            border: 1px solid #409EFF;
+        }
+    )");
+  auto *h_pass = new QHBoxLayout;
+  h_pass->addStretch(1);
+  h_pass->addWidget(password, 5);
+  h_pass->addStretch(1);
+  v->addLayout(h_pass);
+
+  auto *btnLogin = new QPushButton("登录", frame);
+  btnLogin->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  btnLogin->setFixedHeight(32);
+  auto *btnRegister = new QPushButton("注册", frame);
+  btnRegister->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  btnRegister->setFixedHeight(32);
+
+  auto *h_btn = new QHBoxLayout;
+  h_btn->addStretch(9);
+  h_btn->addWidget(btnLogin, 2);
+  h_btn->addWidget(btnRegister, 2);
+  h_btn->addStretch(9);
+  v->addLayout(h_btn);
+  v->addStretch();
 }

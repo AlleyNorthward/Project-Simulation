@@ -1,0 +1,10 @@
+# ninja log v6
+51	2900	7896512057971617	login/loginLib_autogen/timestamp	1cc22b06b4bb704c
+51	2900	7896512057971617	login/loginLib_autogen/mocs_compilation.cpp	1cc22b06b4bb704c
+51	2900	7896512057971617	F:/0github/Project-Simulation/mysql/Project/build/login/loginLib_autogen/timestamp	1cc22b06b4bb704c
+51	2900	7896512057971617	F:/0github/Project-Simulation/mysql/Project/build/login/loginLib_autogen/mocs_compilation.cpp	1cc22b06b4bb704c
+2911	6030	7896512061240986	login/CMakeFiles/loginLib.dir/loginLib_autogen/mocs_compilation.cpp.obj	84a8e3e2c439365c
+3275	6283	7896512064903014	test/CMakeFiles/main.dir/login_test.cpp.obj	d30611f623704bdf
+3096	6698	7896512063103838	login/CMakeFiles/loginLib.dir/src/LoginWindow.cpp.obj	964c5dd761243ac4
+6702	7240	7896512099141262	login/libloginLib.a	3236bbf6e976480
+7242	8040	7896512104535664	test/main.exe	6332bedeaae0261a
