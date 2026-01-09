@@ -1,5 +1,0 @@
-set(__QT_DEPLOY_TARGET_loginLib_FILE F:/0github/Project-Simulation/mysql/Project/build/login/libloginLib.a)
-set(__QT_DEPLOY_TARGET_loginLib_TYPE STATIC_LIBRARY)
-set(__QT_DEPLOY_TARGET_main_FILE F:/0github/Project-Simulation/mysql/Project/build/test/main.exe)
-set(__QT_DEPLOY_TARGET_main_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_main_RUNTIME_DLLS F:/Qt/Qt.6.9/6.9.3/mingw_64/bin/Qt6Widgets.dll;F:/Qt/Qt.6.9/6.9.3/mingw_64/bin/Qt6Gui.dll;F:/Qt/Qt.6.9/6.9.3/mingw_64/bin/Qt6Core.dll)
