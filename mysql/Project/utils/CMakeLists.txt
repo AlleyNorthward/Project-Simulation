@@ -2,24 +2,25 @@ cmake_minimum_required(VERSION 3.25)
 
 add_library(
   utilsLib
-  INTERFACE
+  STATIC
+  src/anim.cpp
 )
 
 target_include_directories(
   utilsLib
-  INTERFACE
+  PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
 
 target_compile_features(
   utilsLib
-  INTERFACE
+  PUBLIC
   cxx_std_17
 )
 
 target_link_libraries(
   utilsLib
-  INTERFACE
-  Qt6::Core
+  PUBLIC
+  Qt6::Widgets
 )

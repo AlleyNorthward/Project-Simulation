@@ -5,7 +5,6 @@
 #include <QHBoxLayout>
 #include <QIcon>
 #include <QLineEdit>
-#include <QPushButton>
 #include <QVBoxLayout>
 
 LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
@@ -13,6 +12,7 @@ LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
   setupWindow();
   setupSlider();
   setupInput();
+  connect(&inputWidget->get_btnLogin(), &QPushButton::clicked, this, &LoginWindow::attach);
 
   QVBoxLayout *layout = new QVBoxLayout(this);
   QHBoxLayout *h_layout = new QHBoxLayout;
@@ -45,8 +45,8 @@ void LoginWindow::setupSlider() {
   imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
   // 这里是debug模式的. 怎么能使能开启或关闭呢?
-  imageLabel->setStyleSheet("background-color: red;"
-                            "border: 2px solid blue;");
+  // imageLabel->setStyleSheet("background-color: red;"
+  //                           "border: 2px solid blue;");
   timer = new QTimer(this);
   connect(timer, &QTimer::timeout, this, &LoginWindow::nextImage);
   timer->start(3000);
@@ -104,16 +104,50 @@ void _QLogin::setupFrame() {
             background: rgba(255,255,255,0.95);
         }
     )");
-  h_frame->addStretch(2);
+
+  auto *title = new QLabel("山东科技酒店", frame);
+  title->setAlignment(Qt::AlignCenter);
+  title->setFixedHeight(36);
+  title->setStyleSheet(R"(
+      QLabel {
+          font-size: 36px;
+          font-weight: 600;
+          color: #303133;
+          letter-spacing: 2px;
+      }
+  )");
+
+  auto *group = new QLabel(" 组长: 张特尔\n\n 组员: 闫凯杰\n\n 组员: 王千龙");
+  group->setAlignment(Qt::AlignCenter);
+  group->setFixedHeight(136);
+  group->setStyleSheet(R"(
+      QLabel {
+          font-size: 18px;
+          font-weight: 600;
+          color: #303133;
+          letter-spacing: 2px;
+      }
+  )");
+
+  h_frame->addWidget(title, 2);
   h_frame->addWidget(frame, 1);
-  h_frame->addStretch(2);
+  h_frame->addWidget(group, 2);
   v_frame->addLayout(h_frame);
 }
 
 void _QLogin::setupOthers() {
   auto *v = new QVBoxLayout(frame);
   auto *label = new QLabel("请登录", frame);
-  // label->setStyleSheet("background:red;");
+  label->setAlignment(Qt::AlignCenter);
+  label->setFixedHeight(36);
+  label->setStyleSheet(R"(
+      QLabel {
+          font-size: 20px;
+          font-weight: 600;
+          color: #303133;
+          letter-spacing: 2px;
+      }
+  )");
   v->addWidget(label, 0, Qt::AlignCenter);
   username = new QLineEdit(this);
   username->setPlaceholderText("用户名");
@@ -158,10 +192,10 @@ void _QLogin::setupOthers() {
   h_pass->addStretch(1);
   v->addLayout(h_pass);
 
-  auto *btnLogin = new QPushButton("登录", frame);
+  btnLogin = new QPushButton("登录", frame);
   btnLogin->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
   btnLogin->setFixedHeight(32);
-  auto *btnRegister = new QPushButton("注册", frame);
+  btnRegister = new QPushButton("注册", frame);
   btnRegister->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
   btnRegister->setFixedHeight(32);
 
@@ -172,4 +206,12 @@ void _QLogin::setupOthers() {
   h_btn->addStretch(9);
   v->addLayout(h_btn);
   v->addStretch();
+}
+
+void LoginWindow::attach() {
+  if (inputWidget->get_username().text() == "admin" && inputWidget->get_password().text() == "123") {
+    emit loginSucceeded();
+  } else {
+    utils::out() << "登录失败" << utils::endl;
+  }
 }
