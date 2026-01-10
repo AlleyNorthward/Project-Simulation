@@ -13,7 +13,6 @@ MainPage::MainPage(QWidget *parent) : QMainWindow(parent) {
   booking = new BookingTab;
   orders = new OrderTab;
   settings = new SettingsTab;
-  // this->setupSettings();
   this->addTabs();
   setCentralWidget(tabs);
   resize(1300, 660);
@@ -25,13 +24,6 @@ void MainPage::setupTabs() {
   tabs->setMovable(false);
   tabs->setTabPosition(QTabWidget::North);
 }
-
-// void MainPage::setupSettings() {
-//   settings = new QWidget;
-//   auto *v = new QVBoxLayout(settings);
-//   v->addWidget(new QLabel("系统设置"));
-//   v->addStretch();
-// }
 
 void MainPage::addTabs() {
   tabs->addTab(home, "首页");

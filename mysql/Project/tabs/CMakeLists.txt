@@ -40,5 +40,6 @@ target_link_libraries(
   tabsLib
   PUBLIC
   utilsLib
+  sqlLib
   Qt6::Widgets
 )

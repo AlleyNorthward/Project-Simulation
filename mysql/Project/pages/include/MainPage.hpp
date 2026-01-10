@@ -1,10 +1,10 @@
 #ifndef MAINPAGE_HPP
 #define MAINPAGE_HPP
 
-#include "HomeTab.hpp"
-#include "RoomsTab.hpp"
 #include "BookingTab.hpp"
+#include "HomeTab.hpp"
 #include "OrderTab.hpp"
+#include "RoomsTab.hpp"
 #include "SettingsTab.hpp"
 #include <QLabel>
 #include <QMainWindow>
@@ -14,9 +14,9 @@ class MainPage : public QMainWindow {
   Q_OBJECT
 public:
   explicit MainPage(QWidget *parent = nullptr);
+  inline void setUserName(const QString &usr) { home->setUserName(usr); }
 
 private:
-  // void setupSettings();
   void setupTabs();
   void addTabs();
 
@@ -27,9 +27,8 @@ private:
   QTabWidget *tabs;
   HomeTab *home;
   RoomsTab *rooms;
-  BookingTab* booking;
-  OrderTab* orders;
-  // QWidget *settings;
-  SettingsTab* settings;
+  BookingTab *booking;
+  OrderTab *orders;
+  SettingsTab *settings;
 };
 #endif

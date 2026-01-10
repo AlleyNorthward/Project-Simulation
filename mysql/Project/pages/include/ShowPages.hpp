@@ -11,7 +11,7 @@ public:
   explicit ShowPages(QWidget *parent = nullptr);
 
 private slots:
-  void setLoginPage();
+  void setLoginPage(const QString& usr);
   void setMainPage();
 
 private:

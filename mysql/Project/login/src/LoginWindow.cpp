@@ -223,7 +223,7 @@ void LoginWindow::attach() {
     Query.bindValue(1, pwd);
 
     if (Query.next()) {
-      emit loginSucceeded();
+      emit loginSucceeded(usr);
       success = true;
     }
     if (!success) {

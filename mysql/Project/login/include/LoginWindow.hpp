@@ -38,6 +38,7 @@ class LoginWindow : public QWidget {
 public:
   explicit LoginWindow(QWidget *parent = nullptr);
   ~LoginWindow();
+  // inline const QString username() const {return inputWidget->get_username().text();}
 
 private:
   void setupWindow();
@@ -59,7 +60,7 @@ private:
   QStringList images;
   int currentIndex;
 signals:
-  void loginSucceeded();
+  void loginSucceeded(const QString &usr);
 };
 
 #endif
