@@ -18,7 +18,7 @@ ShowPages::ShowPages(QWidget *parent) {
 
 void ShowPages::setupMainPages() {
   setWindowTitle("山东科技酒店");
-  QString iconPath = utils::get_file_path("assets/icons/00hotel.png");
+  QString iconPath = utils::get_file_path("assets/icons/04hotel.svg");
   setWindowIcon(QIcon(iconPath));
   resize(1300, 660);
 }

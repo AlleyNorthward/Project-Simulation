@@ -1,29 +1,35 @@
 cmake_minimum_required(VERSION 3.25)
 
 add_library(
-  pagesLib
+  tabsLib
   STATIC
-  include/ShowPages.hpp
-  src/ShowPages.cpp
-  include/MainPage.hpp
-  src/MainPage.cpp
+  include/HomeTab.hpp
+  src/HomeTab.cpp
+  include/RoomsTab.hpp
+  src/RoomsTab.cpp
+  include/BookingTab.hpp
+  src/BookingTab.cpp
+  include/OrderTab.hpp
+  src/OrderTab.cpp
+  include/SettingsTab.hpp
+  src/SettingsTab.cpp
 )
 
 target_include_directories(
-  pagesLib
+  tabsLib
   PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
 
 target_compile_features(
-  pagesLib
+  tabsLib
   PUBLIC
   cxx_std_17
 )
 
 set_target_properties(
-  pagesLib
+  tabsLib
   PROPERTIES
   AUTOMOC ON
   AUTOUIC ON
@@ -31,10 +37,8 @@ set_target_properties(
 )
 
 target_link_libraries(
-  pagesLib
+  tabsLib
   PUBLIC
   utilsLib
   Qt6::Widgets
-  loginLib
-  tabsLib
 )

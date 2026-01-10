@@ -1,10 +1,10 @@
-#include "MainPage.hpp"
+#include "OrderTab.hpp"
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
-  MainPage m;
-  m.show();
-
+  OrderTab r;
+  r.resize(1300, 660);
+  r.show();
   return app.exec();
 }

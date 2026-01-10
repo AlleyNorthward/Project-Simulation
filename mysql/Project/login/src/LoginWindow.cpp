@@ -6,13 +6,15 @@
 #include <QIcon>
 #include <QLineEdit>
 #include <QVBoxLayout>
+#include <QMessageBox>
 
 LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
   setupAllPictures();
   setupWindow();
   setupSlider();
   setupInput();
-  connect(&inputWidget->get_btnLogin(), &QPushButton::clicked, this, &LoginWindow::attach);
+  connect(&inputWidget->get_btnLogin(), &QPushButton::clicked, this,
+          &LoginWindow::attach);
 
   QVBoxLayout *layout = new QVBoxLayout(this);
   QHBoxLayout *h_layout = new QHBoxLayout;
@@ -31,7 +33,7 @@ LoginWindow::~LoginWindow() {
 void LoginWindow::setupWindow() {
   setWindowTitle("酒店管理系统 - 登录");
   resize(1300, 660);
-  QString iconPath = utils::get_file_path("assets/icons/00hotel.png");
+  QString iconPath = utils::get_file_path("assets/messages/warn.svg");
   setWindowIcon(QIcon(iconPath));
   utils::out() << "酒店管理系统创建成功!" << utils::endl;
 }
@@ -39,14 +41,9 @@ void LoginWindow::setupWindow() {
 void LoginWindow::setupSlider() {
   imageLabel = new QLabel(this);
   imageLabel->setAlignment(Qt::AlignCenter);
-  // imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-  // imageLabel->setFixedHeight(this->height() / 1.3);
   imageLabel->setScaledContents(true);
   imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
-  // 这里是debug模式的. 怎么能使能开启或关闭呢?
-  // imageLabel->setStyleSheet("background-color: red;"
-  //                           "border: 2px solid blue;");
   timer = new QTimer(this);
   connect(timer, &QTimer::timeout, this, &LoginWindow::nextImage);
   timer->start(3000);
@@ -62,8 +59,6 @@ void LoginWindow::nextImage() {
 void LoginWindow::updateImage() {
   if (images.isEmpty())
     return;
-  // imageLabel->setPixmap(pix.scaled(imageLabel->size(), Qt::KeepAspectRatio,
-  //                                  Qt::SmoothTransformation));
   imageLabel->setPixmap(this->pixmaps[this->currentIndex]);
 }
 
@@ -209,9 +204,12 @@ void _QLogin::setupOthers() {
 }
 
 void LoginWindow::attach() {
-  if (inputWidget->get_username().text() == "admin" && inputWidget->get_password().text() == "123") {
-    emit loginSucceeded();
-  } else {
-    utils::out() << "登录失败" << utils::endl;
+  QString usr = inputWidget->get_username().text();
+  QString pwd = inputWidget->get_password().text();
+
+  if (!(usr == "admin" and pwd == "123")) {
+    QMessageBox::warning(this, "登录失败", "用户名或密码错误");
+    return;
   }
+  emit loginSucceeded();
 }

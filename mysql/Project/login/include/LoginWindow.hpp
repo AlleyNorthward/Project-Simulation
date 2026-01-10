@@ -62,4 +62,4 @@ signals:
   void loginSucceeded();
 };
 
-#endif // LOGINWINDOW_H
+#endif

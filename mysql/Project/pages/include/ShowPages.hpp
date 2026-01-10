@@ -11,16 +11,14 @@ public:
   explicit ShowPages(QWidget *parent = nullptr);
 
 private slots:
-  void setupMainPages();
   void setLoginPage();
   void setMainPage();
 
 private:
+  void setupMainPages();
+private:
   LoginWindow *login;
   MainPage *mainp;
-
-// private:
-//   void setupPages();
 };
 
 #endif
