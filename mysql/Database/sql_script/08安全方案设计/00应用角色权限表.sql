@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS AppRole (
   description VARCHAR(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 应用权限表（可细化，例如：RESERVATION.CREATE, BILL.VIEW）
+-- 应用权限表
 CREATE TABLE IF NOT EXISTS AppPermission (
   permId INT AUTO_INCREMENT PRIMARY KEY,
   permName VARCHAR(100) NOT NULL UNIQUE,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS AppRolePermission (
   CONSTRAINT fk_arp_perm FOREIGN KEY(permId) REFERENCES AppPermission(permId) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 员工-角色关联（把 Employee 表里的员工与应用角色关联）
+-- 员工-角色关联
 CREATE TABLE IF NOT EXISTS AppUserRole (
   employeeId INT NOT NULL,
   roleId INT NOT NULL,

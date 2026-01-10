@@ -13,7 +13,6 @@ BEGIN
   DECLARE v_roleId INT;
   DECLARE v_byId INT;
 
-  -- 注意 COLLATE 保持一致
   SELECT employeeId INTO v_empId 
   FROM Employee 
   WHERE username = p_employeeUsername COLLATE utf8mb4_unicode_ci
@@ -39,7 +38,7 @@ BEGIN
 
 END$$
 
--- 撤销角色（改 COLLATE）
+-- 撤销角色
 CREATE PROCEDURE sp_revoke_app_role(
   IN p_employeeUsername VARCHAR(50),
   IN p_roleName VARCHAR(50)

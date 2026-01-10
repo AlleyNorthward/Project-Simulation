@@ -4,6 +4,7 @@ add_library(
   sqlLib
   STATIC
   src/SqlConnection.cpp
+  src/SqlQuery.cpp
 )
 
 target_include_directories(

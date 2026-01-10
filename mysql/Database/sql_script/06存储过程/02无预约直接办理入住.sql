@@ -11,7 +11,7 @@ CREATE PROCEDURE sp_direct_check_in(
   IN p_staffId INT,
   OUT p_checkInId INT
 )
-proc_block: BEGIN  -- ✅ 标签
+proc_block: BEGIN
 
   DECLARE EXIT HANDLER FOR SQLEXCEPTION
   BEGIN
@@ -25,7 +25,7 @@ proc_block: BEGIN  -- ✅ 标签
     IF (SELECT status FROM Room WHERE roomId = p_roomId FOR UPDATE) <> '空闲' THEN
       ROLLBACK;
       SET p_checkInId = NULL;
-      LEAVE proc_block;  -- ✅ 用标签退出
+      LEAVE proc_block;
     END IF;
 
     -- 插入入住记录
@@ -45,14 +45,3 @@ DELIMITER ;
 
 -- CALL sp_direct_check_in(3, 101, 1, 50.00, 1, @cid);
 -- SELECT @cid;
-
-
-
-
-
-
-
-
-
-
-

@@ -12,14 +12,3 @@ INSERT INTO MembershipLevel (levelName, discountRate, requiredSpending, privileg
 ('企业客户', 0.92, 0.00, '协议价/账期'),
 ('员工内购', 0.70, 0.00, '员工专属折扣'),
 ('试用会员', 0.99, 0.00, '试用权');
-
-
-
-
-
-
-
-
-
-
-

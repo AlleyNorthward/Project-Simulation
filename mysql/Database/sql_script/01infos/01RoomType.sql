@@ -12,14 +12,3 @@ INSERT INTO RoomType (name, bedType, maxOccupancy, basePrice, area, breakfastInc
 ('双人标准间', '双床', 2, 400.00, 20.00, TRUE, ''),
 ('总统套房', '大床', 2, 5000.00, 220.00, TRUE, '顶层豪华'),
 ('青年背包间', '上下铺', 4, 180.00, 12.00, FALSE, '床位式，经济型');
-
-
-
-
-
-
-
-
-
-
-

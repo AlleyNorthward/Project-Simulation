@@ -1,12 +1,13 @@
 #include "LoginWindow.hpp"
+#include "SqlQuery.hpp"
 #include "out.hpp"
 #include "path.hpp"
 #include <QDir>
 #include <QHBoxLayout>
 #include <QIcon>
 #include <QLineEdit>
-#include <QVBoxLayout>
 #include <QMessageBox>
+#include <QVBoxLayout>
 
 LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
   setupAllPictures();
@@ -207,9 +208,26 @@ void LoginWindow::attach() {
   QString usr = inputWidget->get_username().text();
   QString pwd = inputWidget->get_password().text();
 
-  if (!(usr == "admin" and pwd == "123")) {
-    QMessageBox::warning(this, "登录失败", "用户名或密码错误");
-    return;
+  bool success = false;
+  QString queryStr =
+      "SELECT username, password FROM Employee WHERE username = ? "
+      "AND password = ?";
+  QSqlQuery &Query = SqlQuery::instance().query();
+
+  Query.prepare(queryStr);
+  Query.bindValue(0, usr);
+  Query.bindValue(1, pwd);
+
+  if (Query.exec()) {
+    Query.bindValue(0, usr);
+    Query.bindValue(1, pwd);
+
+    if (Query.next()) {
+      emit loginSucceeded();
+      success = true;
+    }
+    if (!success) {
+      QMessageBox::warning(this, "登录失败", "用户名或密码错误");
+    }
   }
-  emit loginSucceeded();
 }

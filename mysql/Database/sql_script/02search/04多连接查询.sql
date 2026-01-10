@@ -23,10 +23,6 @@ LEFT JOIN Payment p ON p.billId = b.billId
 GROUP BY c.customerId, c.name
 ORDER BY totalPaid DESC;
 
-
-
-
-
 SELECT c.customerId, c.name, s.checkInTime, b.totalAmount
 FROM Customer c
 LEFT JOIN Stay s ON s.customerId = c.customerId

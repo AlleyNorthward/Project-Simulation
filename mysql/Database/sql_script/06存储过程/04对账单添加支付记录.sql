@@ -42,11 +42,3 @@ DELIMITER ;
 
 -- CALL sp_add_payment(1, 585.00, '微信', 4, @payid);
 -- SELECT @payid;
-
-
-
-
-
-
-
-

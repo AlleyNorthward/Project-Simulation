@@ -9,7 +9,7 @@ INSERT IGNORE INTO AppRole(roleName, description) VALUES
 ('MAINTENANCE', '维修人员，管理维修记录'),
 ('FINANCE', '财务人员，处理账单/收款');
 
--- 权限（业务层细粒度权限）
+-- 权限
 INSERT IGNORE INTO AppPermission(permName, description) VALUES
 ('RESERVATION.CREATE','创建预订'),
 ('RESERVATION.CANCEL','取消预订'),
@@ -58,15 +58,3 @@ SELECT r.roleId, p.permId
 FROM AppRole r
 JOIN AppPermission p ON p.permName IN ('BILL.VIEW','BILL.EDIT','PAYMENT.MANAGE','REPORT.VIEW')
 WHERE r.roleName = 'FINANCE';
-
-
-
-
-
-
-
-
-
-
-
-

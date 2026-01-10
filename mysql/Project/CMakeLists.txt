@@ -15,7 +15,7 @@ find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
 
 set(MODULE_DEPENDENCIES)
 if(${COMPILE_MODULE} STREQUAL "login")
-  list(APPEND MODULE_DEPENDENCIES utils login test)
+  list(APPEND MODULE_DEPENDENCIES utils sql login test)
 elseif(${COMPILE_MODULE} STREQUAL "sql")
   list(APPEND MODULE_DEPENDENCIES utils sql test)
 elseif(${COMPILE_MODULE} STREQUAL "pages")

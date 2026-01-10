@@ -1,5 +1,4 @@
 #include "out.hpp"
-// #include "path.hpp"
 #include <QApplication>
 #include <QDebug>
 #include <QGraphicsOpacityEffect>

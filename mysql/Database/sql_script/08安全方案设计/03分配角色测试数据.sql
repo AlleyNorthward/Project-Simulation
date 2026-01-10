@@ -16,18 +16,8 @@ CALL sp_assign_app_role('maint_chen', 'MAINTENANCE', 'dev_zhou');
 -- 给开发组周超分配 ADMIN 角色
 CALL sp_assign_app_role('dev_zhou', 'ADMIN', 'dev_zhou');
 
+-- -- 收回张伟的 FRONTDESK 角色
+-- CALL sp_revoke_app_role('front_zhang', 'FRONTDESK');
 
--- 收回张伟的 FRONTDESK 角色
-CALL sp_revoke_app_role('front_zhang', 'FRONTDESK');
-
--- 收回开发组周超的 ADMIN 角色
-CALL sp_revoke_app_role('dev_zhou', 'ADMIN');
-
-
-
-
-
-
-
-
-
+-- -- 收回开发组周超的 ADMIN 角色
+-- CALL sp_revoke_app_role('dev_zhou', 'ADMIN');

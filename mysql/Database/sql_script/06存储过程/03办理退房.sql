@@ -62,15 +62,3 @@ DELIMITER ;
 
 -- CALL sp_checkout_and_generate_bill(3, 0.00, 0.00, @billid);
 -- SELECT @billid;
-
-
-
-
-
-
-
-
-
-
-
-

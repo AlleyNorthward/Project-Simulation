@@ -1,4 +1,5 @@
 #include "SqlConnection.hpp"
+#include "SqlQuery.hpp"
 #include "out.hpp"
 #include <QCoreApplication>
 #include <QSqlQuery>
@@ -12,15 +13,26 @@ int main(int argc, char *argv[]) {
   }
   utils::out() << "诶嘿!" << utils::endl;
 
-  QSqlQuery query(SqlConnection::instance().database());
-  query.exec("SELECT roomTypeId, name, basePrice FROM RoomType");
+  SqlQuery &sqlQuery = SqlQuery::instance();
+  QSqlQuery& Query = sqlQuery.query();
 
-  query.next();
-  int id = query.value("roomTypeId").toInt();
-  utils::out() << id << utils::endl;
-  query.exec("SHOW TABLES");
-  query.next();
-  QString tableName = query.value(0).toString();
-  utils::out() << tableName << utils::endl;
+  QString queryStr =
+      "SELECT username, password FROM Employee WHERE username = ? "
+      "AND password = ?";
+
+  Query.prepare(queryStr);
+  Query.bindValue(0, "wangqianlong");
+  Query.bindValue(1, "123456");
+
+  if (Query.exec()) {
+    Query.bindValue(0, "wangqianlong");
+    Query.bindValue(1, "123456");
+    utils::out() << Query.boundValue(0).toString() << " "
+                 << Query.boundValue(1).toString() << utils::endl;
+
+    if (Query.next()) {
+      utils::out() << "success" << utils::endl;
+    }
+  }
   return 0;
 }
