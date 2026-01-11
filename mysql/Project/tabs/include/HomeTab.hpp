@@ -46,11 +46,6 @@ class _HomeButton : public QWidget {
 public:
   explicit _HomeButton(QWidget *parent = nullptr);
 
-signals:
-  void checkInRequested();      // 办理入住
-  void checkOutRequested();     // 办理退房
-  void roomStatusRequested();   // 房态管理
-  void customerMgmtRequested(); // 客户管理
 private:
   QPushButton *createButton(const QString &text);
 };
