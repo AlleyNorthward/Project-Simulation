@@ -2,7 +2,7 @@
 #include "anim.hpp"
 #include "path.hpp"
 #include <QIcon>
-#include "out.hpp"
+// #include "out.hpp"
 
 ShowPages::ShowPages(QWidget *parent) {
   setupMainPages();
@@ -26,7 +26,7 @@ void ShowPages::setupMainPages() {
 
 void ShowPages::setLoginPage(const QString& usr) {
   mainp->setUserName(usr);
-  utils::out() << "ShowPages" << " " << usr << utils::endl;
+  // utils::out() << "ShowPages" << " " << usr << utils::endl;
   this->setCurrentWidget(mainp);
   fadeInWidget(mainp, 400);
 }

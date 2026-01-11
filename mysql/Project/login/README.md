@@ -10,6 +10,7 @@
     - [setupWindow](#setupWindow)
     - [setupSlider](#setupSlider)
 - [控件摆放](#控件摆放)
+- [问题](#问题)
 
 
 ## LoginWindow
@@ -48,7 +49,81 @@
 &emsp;&emsp;@time 2026-01-08 16:49:43  
 **警告:**这里呢, 以后就不会再补充了. 不符合刻意练习的思想. 我们并不是以某一个实现为目标, 实现方式多样化. 而刻意练习肯定不是这样的, 刻意练习应该是专注庞大构件的某一下部分, 仔细研究并理解, 并且进行针对性练习. 熟悉之后, 能够灵活构建出自己想构建的东西. 如果只是单纯地分析某一个实现好的代码, 而不去剖析其内部具体实现原理, 感觉上来看, 还是背代码, 意义不是非常地大. 所以, 这里就抛弃了. 更细节化的处理在上一路径的`Uml`之中. 另外, 添加了`auto_test.cpp`文件, 可以更加灵活地测试自己的思想, 想法, 及时验证自己的想法是否准确. 
 
+## 问题
+&emsp;&emsp;@author 巷北  
+&emsp;&emsp;@time 2026-01-11 10:44:51  
 
+上面说的不再补充了, 指的是分析说明不再补充了. 但是存在的问题, 肯定还是需要继续说的. 
+
+~~~cpp
+#ifndef LOGINWINDOW_HPP
+#define LOGINWINDOW_HPP
+
+#include <QFrame>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QShowEvent>
+#include <QTimer>
+#include <QVBoxLayout>
+#include <QWidget>
+
+class _QLogin : public QWidget {
+  Q_OBJECT
+public:
+  explicit _QLogin(QWidget *parent = nullptr);
+
+private:
+  QLineEdit *username;
+  QLineEdit *password;
+  QFrame *frame;
+  QPushButton *btnLogin;
+  QPushButton *btnRegister;
+
+public:
+  inline const QLineEdit &get_username() const { return *username; }
+  inline const QLineEdit &get_password() const { return *password; }
+  inline const QPushButton &get_btnLogin() const { return *btnLogin; }
+  inline const QPushButton &get_btnRegister() const { return *btnRegister; }
+
+private:
+  void setupFrame();
+  void setupOthers();
+};
+
+class LoginWindow : public QWidget {
+  Q_OBJECT
+public:
+  explicit LoginWindow(QWidget *parent = nullptr);
+  ~LoginWindow();
+
+private:
+  void setupWindow();
+  void setupSlider();
+  void setupInput();
+  void setupAllPictures();
+  void updateImage();
+  void showEvent(QShowEvent *event);
+  void attach();
+
+private slots:
+  void nextImage();
+
+private:
+  QVector<QPixmap> pixmaps;
+  QLabel *imageLabel;
+  _QLogin *inputWidget;
+  QTimer *timer;
+  QStringList images;
+  int currentIndex;
+signals:
+  void loginSucceeded(const QString &usr);
+};
+#endif
+~~~
+
+这是目前的结构. 当时写的时候呢, 确实是对`qt` 不怎么熟悉. 而现在熟悉了呢, 却又觉得过耦合了. 这个登录界面, 其实没必要管理翻转图片的对应逻辑的. 我现在想在登陆后的首页也有个翻转图片的效果, 可以如果`copy` 一份的话, 代码重复. 如果放在以前, 我到也无所谓, 但是现在思考过面向对象分析之后, 我必然无法忍受这种感觉. 松耦合的话, 就需要将内部翻转图片的方法剖离出来, 专门组织称一个类, 这样就会舒服很多了. 
+但是, 这个类放在哪里呢? 放在`utils`中吗? 可是这里我用来存放所有函数的啊. 放在哪里呢? 不管了, 先`git` 保留一份吧. 
 
 
 
