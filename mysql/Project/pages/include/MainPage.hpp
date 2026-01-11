@@ -1,10 +1,14 @@
 #ifndef MAINPAGE_HPP
 #define MAINPAGE_HPP
 
+#include "BillTab.hpp"
 #include "BookingTab.hpp"
+#include "EmployeeTab.hpp"
 #include "HomeTab.hpp"
+#include "MaintenanceTab.hpp"
 #include "OrderTab.hpp"
 #include "RoomsTab.hpp"
+#include "ServiceTab.hpp"
 #include "SettingsTab.hpp"
 #include <QLabel>
 #include <QMainWindow>
@@ -29,6 +33,10 @@ private:
   RoomsTab *rooms;
   BookingTab *booking;
   OrderTab *orders;
+  EmployeeTab *employee;
+  ServiceTab *service;
+  BillTab *bill;
+  MaintenanceTab * maintanance;
   SettingsTab *settings;
 };
 #endif

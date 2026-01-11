@@ -4,8 +4,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
-// #include "out.hpp"
-// #include "SqlQuery.hpp"
+#include <SqlQuery.hpp>
 
 _HomeTitle::_HomeTitle(QWidget *parent) : QWidget(parent) {
   this->setupTimer();
@@ -42,13 +41,14 @@ void _HomeTitle::setUserName(const QString &usr) {
 }
 
 _HomeCard::_HomeCard(QWidget *parent) : QWidget(parent) {
+  getStatusDiscountEligible();
   auto *h = new QHBoxLayout(this);
   h->setSpacing(15);
-  h->addWidget(createCard("今日入住", "12"));
-  h->addWidget(createCard("今日退房", "8"));
-  h->addWidget(createCard("在住房间", "56"));
-  h->addWidget(createCard("空闲房间", "24"));
-  h->addWidget(createCard("你好    嘿嘿", "36"));
+  h->addWidget(createCard("空闲", count[0]));
+  h->addWidget(createCard("已预订", count[1]));
+  h->addWidget(createCard("已入住", count[2]));
+  h->addWidget(createCard("维修中", count[3]));
+  h->addWidget(createCard("打折房", count[4]));
 }
 
 QWidget *_HomeCard::createCard(const QString &title, const QString &value) {
@@ -106,18 +106,39 @@ _HomeTips::_HomeTips(QWidget *parent) : QWidget(parent) {
 
 HomeTab::HomeTab(QWidget *parent) : QWidget(parent) {
   auto *mainLayout = new QVBoxLayout(this);
-  mainLayout->setSpacing(20);
-  mainLayout->setContentsMargins(30, 20, 30, 20);
+  mainLayout->setSpacing(0);
+  mainLayout->setContentsMargins(0, 0, 0, 0);
 
   homeTitle = new _HomeTitle(this);
   homeCard = new _HomeCard(this);
   homeButton = new _HomeButton(this);
   homeTips = new _HomeTips(this);
+  imageSlider = new ImageSlider("/assets/home", this);
 
-  mainLayout->addWidget(homeTitle);
-  mainLayout->addWidget(homeCard);
-  mainLayout->addWidget(homeButton);
-  mainLayout->addWidget(homeTips);
+  mainLayout->addWidget(homeTitle, 0);
+  mainLayout->addWidget(homeCard, 0);
+  mainLayout->addWidget(homeButton, 0);
+  mainLayout->addWidget(imageSlider, 1);
+  mainLayout->addWidget(homeTips, 0);
+}
 
-  mainLayout->addStretch();
+void _HomeCard::getStatusDiscountEligible() {
+  QSqlQuery &Query = SqlQuery::instance().query();
+  QString queryStr = R"(
+    SELECT 
+        SUM(status='空闲'),
+        SUM(status='已预订'),
+        SUM(status='已入住'),
+        SUM(status='维修中'),
+        SUM(discountEligible=1)
+    FROM Room;
+  )";
+  Query.prepare(queryStr);
+  if (Query.exec() && Query.next()) {
+    count.append(Query.value(0).toString());
+    count.append(Query.value(1).toString());
+    count.append(Query.value(2).toString());
+    count.append(Query.value(3).toString());
+    count.append(Query.value(4).toString());
+  }
 }

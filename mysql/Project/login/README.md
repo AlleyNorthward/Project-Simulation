@@ -53,7 +53,7 @@
 &emsp;&emsp;@author 巷北  
 &emsp;&emsp;@time 2026-01-11 10:44:51  
 
-上面说的不再补充了, 指的是分析说明不再补充了. 但是存在的问题, 肯定还是需要继续说的. 
+&emsp;&emsp;上面说的不再补充了, 指的是分析说明不再补充了. 但是存在的问题, 肯定还是需要继续说的. <br>
 
 ~~~cpp
 #ifndef LOGINWINDOW_HPP
@@ -122,8 +122,67 @@ signals:
 #endif
 ~~~
 
-这是目前的结构. 当时写的时候呢, 确实是对`qt` 不怎么熟悉. 而现在熟悉了呢, 却又觉得过耦合了. 这个登录界面, 其实没必要管理翻转图片的对应逻辑的. 我现在想在登陆后的首页也有个翻转图片的效果, 可以如果`copy` 一份的话, 代码重复. 如果放在以前, 我到也无所谓, 但是现在思考过面向对象分析之后, 我必然无法忍受这种感觉. 松耦合的话, 就需要将内部翻转图片的方法剖离出来, 专门组织称一个类, 这样就会舒服很多了. 
-但是, 这个类放在哪里呢? 放在`utils`中吗? 可是这里我用来存放所有函数的啊. 放在哪里呢? 不管了, 先`git` 保留一份吧. 
+&emsp;&emsp;这是目前的结构. 当时写的时候呢, 确实是对`qt` 不怎么熟悉. 而现在熟悉了呢, 却又觉得过耦合了. 这个登录界面, 其实没必要管理翻转图片的对应逻辑的. 我现在想在登陆后的首页也有个翻转图片的效果, 可以如果`copy` 一份的话, 代码重复. 如果放在以前, 我到也无所谓, 但是现在思考过面向对象分析之后, 我必然无法忍受这种感觉. 松耦合的话, 就需要将内部翻转图片的方法剖离出来, 专门组织称一个类, 这样就会舒服很多了. <br>
+&emsp;&emsp;但是, 这个类放在哪里呢? 放在`utils`中吗? 可是这里我用来存放所有函数的啊. 放在哪里呢? 不管了, 先`git` 保留一份吧. <br>
+&emsp;&emsp;下面是解耦后的头文件:<br>
+
+~~~cpp
+#ifndef LOGINWINDOW_HPP
+#define LOGINWINDOW_HPP
+
+#include "ImageSlider.hpp"
+#include <QFrame>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QShowEvent>
+#include <QTimer>
+#include <QVBoxLayout>
+#include <QWidget>
+
+class _QLogin : public QWidget {
+  Q_OBJECT
+public:
+  explicit _QLogin(QWidget *parent = nullptr);
+
+private:
+  QLineEdit *username;
+  QLineEdit *password;
+  QFrame *frame;
+  QPushButton *btnLogin;
+  QPushButton *btnRegister;
+
+public:
+  inline const QLineEdit &get_username() const { return *username; }
+  inline const QLineEdit &get_password() const { return *password; }
+  inline const QPushButton &get_btnLogin() const { return *btnLogin; }
+  inline const QPushButton &get_btnRegister() const { return *btnRegister; }
+
+private:
+  void setupFrame();
+  void setupOthers();
+};
+
+class LoginWindow : public QWidget {
+  Q_OBJECT
+public:
+  explicit LoginWindow(QWidget *parent = nullptr);
+
+private:
+  void setupWindow();
+  void attach();
+
+private:
+  _QLogin *inputWidget;
+  ImageSlider *imageSlider;
+signals:
+  void loginSucceeded(const QString &usr);
+};
+#endif
+~~~
+
+&emsp;&emsp;清晰了很多很多.<br>
+
 
 
 

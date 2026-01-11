@@ -1,6 +1,7 @@
 #ifndef HOMETAB_HPP
 #define HOMETAB_HPP
 
+#include "ImageSlider.hpp"
 #include <QLabel>
 #include <QPushButton>
 #include <QTimer>
@@ -33,6 +34,11 @@ public:
 
 private:
   QWidget *createCard(const QString &title, const QString &value);
+  void getStatusDiscountEligible();
+  void getCount();
+
+private:
+  QVector<QString> count;
 };
 
 class _HomeButton : public QWidget {
@@ -40,6 +46,11 @@ class _HomeButton : public QWidget {
 public:
   explicit _HomeButton(QWidget *parent = nullptr);
 
+signals:
+  void checkInRequested();      // 办理入住
+  void checkOutRequested();     // 办理退房
+  void roomStatusRequested();   // 房态管理
+  void customerMgmtRequested(); // 客户管理
 private:
   QPushButton *createButton(const QString &text);
 };
@@ -61,6 +72,7 @@ private:
   _HomeCard *homeCard;
   _HomeButton *homeButton;
   _HomeTips *homeTips;
+  ImageSlider *imageSlider;
 };
 
 #endif

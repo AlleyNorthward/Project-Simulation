@@ -12,6 +12,10 @@ MainPage::MainPage(QWidget *parent) : QMainWindow(parent) {
   rooms = new RoomsTab(this);
   booking = new BookingTab(this);
   orders = new OrderTab(this);
+  employee = new EmployeeTab(this);
+  service = new ServiceTab(this);
+  bill = new BillTab(this);
+  maintanance = new MaintenanceTab(this);
   settings = new SettingsTab(this);
   this->addTabs();
   setCentralWidget(tabs);
@@ -30,5 +34,9 @@ void MainPage::addTabs() {
   tabs->addTab(rooms, "房间");
   tabs->addTab(booking, "预定");
   tabs->addTab(orders, "订单");
+  tabs->addTab(service, "服务类型");
+  tabs->addTab(employee, "员工信息");
+  tabs->addTab(bill, "账单");
+  tabs->addTab(maintanance, "维修信息");
   tabs->addTab(settings, "设置");
 }

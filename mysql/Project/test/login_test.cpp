@@ -1,8 +1,8 @@
 #include "LoginWindow.hpp"
+#include "SqlConnection.hpp"
+#include "out.hpp"
 #include <QApplication>
 #include <QObject>
-#include "out.hpp"
-#include "SqlConnection.hpp"
 #include <QStackedWidget>
 
 int main(int argc, char *argv[]) {

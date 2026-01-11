@@ -13,6 +13,14 @@ add_library(
   src/OrderTab.cpp
   include/SettingsTab.hpp
   src/SettingsTab.cpp
+  include/EmployeeTab.hpp
+  src/EmployeeTab.cpp
+  include/ServiceTab.hpp
+  src/ServiceTab.cpp
+  include/BillTab.hpp
+  src/BillTab.cpp
+  include/MaintenanceTab.hpp
+  src/MaintenanceTab.cpp
 )
 
 target_include_directories(
