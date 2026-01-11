@@ -10,25 +10,15 @@
 #include <QVBoxLayout>
 
 LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent) {
-  setupAllPictures();
   setupWindow();
-  setupSlider();
-  setupInput();
-  connect(&inputWidget->get_btnLogin(), &QPushButton::clicked, this,
-          &LoginWindow::attach);
+  inputWidget = new _QLogin(this);
+  imageSlider = new ImageSlider("/assets/login", this);
 
   QVBoxLayout *layout = new QVBoxLayout(this);
-  QHBoxLayout *h_layout = new QHBoxLayout;
-  h_layout->addStretch(1);
-  h_layout->addWidget(imageLabel, 10);
-  h_layout->addStretch(1);
-  layout->addLayout(h_layout, 8);
+  layout->addWidget(imageSlider, 8);
   layout->addWidget(inputWidget, 2);
-}
-
-LoginWindow::~LoginWindow() {
-  if (timer)
-    timer->stop();
+  connect(&inputWidget->get_btnLogin(), &QPushButton::clicked, this,
+          &LoginWindow::attach);
 }
 
 void LoginWindow::setupWindow() {
@@ -38,49 +28,6 @@ void LoginWindow::setupWindow() {
   setWindowIcon(QIcon(iconPath));
   utils::out() << "酒店管理系统创建成功!" << utils::endl;
 }
-
-void LoginWindow::setupSlider() {
-  imageLabel = new QLabel(this);
-  imageLabel->setAlignment(Qt::AlignCenter);
-  imageLabel->setScaledContents(true);
-  imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-
-  timer = new QTimer(this);
-  connect(timer, &QTimer::timeout, this, &LoginWindow::nextImage);
-  timer->start(3000);
-}
-
-void LoginWindow::nextImage() {
-  if (images.isEmpty())
-    return;
-  currentIndex = (currentIndex + 1) % images.size();
-  updateImage();
-}
-
-void LoginWindow::updateImage() {
-  if (images.isEmpty())
-    return;
-  imageLabel->setPixmap(this->pixmaps[this->currentIndex]);
-}
-
-void LoginWindow::showEvent(QShowEvent *event) {
-  QWidget::showEvent(event);
-  this->updateImage();
-}
-
-void LoginWindow::setupAllPictures() {
-  this->currentIndex = 0;
-  QDir dir(QDir::currentPath() + "/assets/login");
-  for (int i = 1; i <= 10; i++) {
-    images << dir.filePath(QString::number(i) + ".jpg");
-  }
-
-  for (const auto &path : images) {
-    pixmaps.push_back(QPixmap(path));
-  }
-}
-
-void LoginWindow::setupInput() { inputWidget = new _QLogin(this); }
 
 _QLogin::_QLogin(QWidget *parent) : QWidget(parent) {
   this->setupFrame();

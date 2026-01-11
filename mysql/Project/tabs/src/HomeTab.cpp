@@ -11,11 +11,11 @@ _HomeTitle::_HomeTitle(QWidget *parent) : QWidget(parent) {
   this->setupTimer();
 
   auto *v = new QVBoxLayout(this);
-  auto *title = new QLabel("欢迎使用酒店管理系统");
+  auto *title = new QLabel("欢迎使用酒店管理系统", this);
   title->setAlignment(Qt::AlignCenter);
   title->setStyleSheet("font-size:24px; font-weight:bold;");
 
-  subTitle = new QLabel("");
+  subTitle = new QLabel("", this);
   subTitle->setAlignment(Qt::AlignCenter);
   subTitle->setStyleSheet("color:gray;");
 
@@ -52,7 +52,7 @@ _HomeCard::_HomeCard(QWidget *parent) : QWidget(parent) {
 }
 
 QWidget *_HomeCard::createCard(const QString &title, const QString &value) {
-  auto *w = new QWidget;
+  auto *w = new QWidget(this);
   w->setStyleSheet("QWidget {"
                    "border:1px solid #cccccc;"
                    "border-radius:8px;"
@@ -86,7 +86,7 @@ _HomeButton::_HomeButton(QWidget *parent) : QWidget(parent) {
 }
 
 QPushButton *_HomeButton::createButton(const QString &text) {
-  auto *b = new QPushButton(text);
+  auto *b = new QPushButton(text, this);
   b->setMinimumHeight(40);
   b->setStyleSheet("QPushButton {"
                    "font-size:16px;"
@@ -98,7 +98,7 @@ QPushButton *_HomeButton::createButton(const QString &text) {
 
 _HomeTips::_HomeTips(QWidget *parent) : QWidget(parent) {
   auto h = new QHBoxLayout(this);
-  auto *tip = new QLabel("提示: 今日有 3 个 房间需要打扫");
+  auto *tip = new QLabel("提示: 今日有 3 个 房间需要打扫", this);
   tip->setAlignment(Qt::AlignCenter);
   tip->setStyleSheet("color:#aa0000;");
   h->addWidget(tip);
@@ -109,10 +109,10 @@ HomeTab::HomeTab(QWidget *parent) : QWidget(parent) {
   mainLayout->setSpacing(20);
   mainLayout->setContentsMargins(30, 20, 30, 20);
 
-  homeTitle = new _HomeTitle;
-  homeCard = new _HomeCard;
-  homeButton = new _HomeButton;
-  homeTips = new _HomeTips;
+  homeTitle = new _HomeTitle(this);
+  homeCard = new _HomeCard(this);
+  homeButton = new _HomeButton(this);
+  homeTips = new _HomeTips(this);
 
   mainLayout->addWidget(homeTitle);
   mainLayout->addWidget(homeCard);

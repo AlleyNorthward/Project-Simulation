@@ -9,17 +9,17 @@ RoomsTab::RoomsTab(QWidget* parent): QWidget(parent){
   auto *v = new QVBoxLayout(this);
   auto* h = new QHBoxLayout;
 
-  h->addWidget(new QLabel("搜索:"));
-  m_search = new QLineEdit;
+  h->addWidget(new QLabel("搜索:", this));
+  m_search = new QLineEdit(this);
   m_search->setPlaceholderText("按房号/类型/备注搜索");
   h->addWidget(m_search);
 
-  h->addWidget(new QLabel("状态:"));
-  m_filter = new QComboBox;
+  h->addWidget(new QLabel("状态:", this));
+  m_filter = new QComboBox(this);
   m_filter->addItems({"全部", "空闲", "入住", "维修"});
   h->addWidget(m_filter);
 
-  QPushButton *refresh = new QPushButton("刷新");
+  QPushButton *refresh = new QPushButton("刷新", this);
   h->addWidget(refresh);
   v->addLayout(h);
 

@@ -1,6 +1,7 @@
 #ifndef LOGINWINDOW_HPP
 #define LOGINWINDOW_HPP
 
+#include "ImageSlider.hpp"
 #include <QFrame>
 #include <QLabel>
 #include <QLineEdit>
@@ -37,27 +38,14 @@ class LoginWindow : public QWidget {
   Q_OBJECT
 public:
   explicit LoginWindow(QWidget *parent = nullptr);
-  ~LoginWindow();
 
 private:
   void setupWindow();
-  void setupSlider();
-  void setupInput();
-  void setupAllPictures();
-  void updateImage();
-  void showEvent(QShowEvent *event);
   void attach();
 
-private slots:
-  void nextImage();
-
 private:
-  QVector<QPixmap> pixmaps;
-  QLabel *imageLabel;
   _QLogin *inputWidget;
-  QTimer *timer;
-  QStringList images;
-  int currentIndex;
+  ImageSlider *imageSlider;
 signals:
   void loginSucceeded(const QString &usr);
 };

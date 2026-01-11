@@ -7,7 +7,7 @@
 ShowPages::ShowPages(QWidget *parent) {
   setupMainPages();
 
-  login = new LoginWindow;
+  login = new LoginWindow(this);
   mainp = new MainPage;
 
   this->addWidget(login);

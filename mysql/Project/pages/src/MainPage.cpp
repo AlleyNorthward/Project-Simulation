@@ -8,11 +8,11 @@
 
 MainPage::MainPage(QWidget *parent) : QMainWindow(parent) {
   this->setupTabs();
-  home = new HomeTab;
-  rooms = new RoomsTab;
-  booking = new BookingTab;
-  orders = new OrderTab;
-  settings = new SettingsTab;
+  home = new HomeTab(this);
+  rooms = new RoomsTab(this);
+  booking = new BookingTab(this);
+  orders = new OrderTab(this);
+  settings = new SettingsTab(this);
   this->addTabs();
   setCentralWidget(tabs);
   resize(1300, 660);

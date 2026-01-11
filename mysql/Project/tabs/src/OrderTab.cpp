@@ -4,6 +4,6 @@
 
 OrderTab::OrderTab(QWidget *parent) : QWidget(parent) {
   auto *v = new QVBoxLayout(this);
-  v->addWidget(new QLabel("订单列表"));
+  v->addWidget(new QLabel("订单列表", this));
   v->addStretch();
 }

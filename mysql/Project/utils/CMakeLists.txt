@@ -4,6 +4,8 @@ add_library(
   utilsLib
   STATIC
   src/anim.cpp
+  include/ImageSlider.hpp
+  src/ImageSlider.cpp
 )
 
 target_include_directories(
@@ -17,6 +19,14 @@ target_compile_features(
   utilsLib
   PUBLIC
   cxx_std_17
+)
+
+set_target_properties(
+  utilsLib
+  PROPERTIES
+  AUTOMOC ON
+  AUTOUIC ON
+  AUTORCC ON
 )
 
 target_link_libraries(
