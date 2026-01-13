@@ -1,0 +1,5 @@
+message(STATUS "==== find_package 查找路径 ====")
+message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
+message(STATUS "CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
+message(STATUS "CMAKE_SYSTEM_PREFIX_PATH: ${CMAKE_SYSTEM_PREFIX_PATH}")
+message(STATUS "Qt6_DIR: ${Qt6_DIR}")

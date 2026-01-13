@@ -34,4 +34,5 @@ INSERT INTO Room (roomId, roomTypeId, floor, status, discountEligible, descripti
 (506, 3, 5, '空闲', TRUE, '备用高级大床'),
 (507, 1, 5, '空闲', TRUE, ''),
 (508, 9, 5, '已入住', TRUE, ''),
-(509, 10, 5, '维修中', FALSE, '');
+(509, 10, 5, '维修中', FALSE, ''),
+(510, 9, 5, '已入住', FALSE, '');

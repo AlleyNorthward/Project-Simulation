@@ -10,7 +10,6 @@ WHERE membershipLevelId = 10 AND registrationDate < DATE_SUB(NOW(), INTERVAL 1 Y
 DELETE FROM Customer
 WHERE membershipLevelId = 10 AND registrationDate < DATE_SUB(NOW(), INTERVAL 1 YEAR);
 
-
 -- 02 No
 SELECT c.customerId FROM Customer c
 LEFT JOIN Stay s ON s.customerId = c.customerId
