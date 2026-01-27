@@ -1,0 +1,18 @@
+digraph Memory {
+  graph [
+    rankdir = "LR"
+  ];
+
+  node [
+    fontsize = "16"
+    shape = "record"
+  ];
+
+  "node0" [
+    label = "<f0> 0x10ba8| <f1>"
+  ];
+
+  "node1" [
+    label = "{<f0> 0x10ba8 | <f1> 0x10ba9}"
+  ]
+}

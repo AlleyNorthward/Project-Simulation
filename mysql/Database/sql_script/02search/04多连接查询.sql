@@ -28,5 +28,7 @@ FROM Customer c
 LEFT JOIN Stay s ON s.customerId = c.customerId
 LEFT JOIN Bill b ON b.checkInId = s.checkInId
 WHERE s.checkInTime = (
-  SELECT MAX(s2.checkInTime) FROM Stay s2 WHERE s2.customerId = c.customerId
+  SELECT MAX(s2.checkInTime) 
+  FROM Stay s2 
+  WHERE s2.customerId = c.customerId
 );

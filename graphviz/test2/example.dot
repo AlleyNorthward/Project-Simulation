@@ -1,0 +1,12 @@
+digraph G {
+  graph[rankdir="TB"]
+  edge[penwidth="2", color="#8383cc", arrowhead="none"]
+  node[penwidth="2", style="filled", color="#8383cc", fillcolor="#b2d3e4", fontcolor="black", fontname="Consolas", shape="record"]
+
+  1 [label="{step1|{装备量|粮食量|信息量}}"]
+  2 [label="{step2|{装备量|粮食量|信息量}}"]
+  3 [label="{step3|{装备量|粮食量|信息量}|{你好|嘿嘿嘿哈}}"]
+
+  1 -> 2;
+  1 -> 3;
+}
