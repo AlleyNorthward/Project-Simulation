@@ -69,7 +69,11 @@ Graph &Graph::setEdgeAttr(const std::string &k, const std::string &v) {
   return *this;
 }
 
-std::string Graph::addNode() {
+std::string Graph::addNode(const std::vector<std::string> &values) {
+  if (values.size() != infos.size()) {
+    throw std::invalid_argument("addNode 参数数量必须和infos一致!");
+  }
+
   int offset = 0;
   std::string id = genId();
   std::stringstream label;
@@ -85,7 +89,7 @@ std::string Graph::addNode() {
       if (j != 0)
         label << "|";
 
-      label << infos[offset + j];
+      label << infos[offset + j] << ": " << values[offset + j];
     }
     label << "}";
     offset += cnt;

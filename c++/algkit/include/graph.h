@@ -50,7 +50,7 @@ public:
   Graph &setNodeAttr(const std::string &k, const std::string &v);
   Graph &setEdgeAttr(const std::string &k, const std::string &v);
 
-  std::string addNode();
+  std::string addNode(const std::vector<std::string> & values = {});
   void addEdge(const std::string &from, const std::string &to);
   void addEdge(const std::string &from, const std::string &to,
                const AttrMap &attrs);
