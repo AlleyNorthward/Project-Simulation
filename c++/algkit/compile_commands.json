@@ -1,0 +1,14 @@
+[
+{
+  "directory": "F:/0github/Project-Simulation/c++/algkit/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Project-Simulation/c++/algkit/include -std=c++17 -o CMakeFiles\\AlgKit.dir\\src\\graph.cpp.obj -c F:\\0github\\Project-Simulation\\c++\\algkit\\src\\graph.cpp",
+  "file": "F:\\0github\\Project-Simulation\\c++\\algkit\\src\\graph.cpp",
+  "output": "CMakeFiles\\AlgKit.dir\\src\\graph.cpp.obj"
+},
+{
+  "directory": "F:/0github/Project-Simulation/c++/algkit/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\c++.exe -IF:/0github/Project-Simulation/c++/algkit/include -std=c++17 -o CMakeFiles\\AlgKit.dir\\src\\timer.cpp.obj -c F:\\0github\\Project-Simulation\\c++\\algkit\\src\\timer.cpp",
+  "file": "F:\\0github\\Project-Simulation\\c++\\algkit\\src\\timer.cpp",
+  "output": "CMakeFiles\\AlgKit.dir\\src\\timer.cpp.obj"
+}
+]
