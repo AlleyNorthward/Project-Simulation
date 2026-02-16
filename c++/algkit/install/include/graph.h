@@ -37,6 +37,7 @@ private:
   AttrMap edgeAttrs;
   std::vector<std::string> infos;
   std::vector<int> layer_count;
+  std::string dotPath = "";
 
   std::string genId();
   int sum();
@@ -51,11 +52,16 @@ public:
   Graph &setEdgeAttr(const std::string &k, const std::string &v);
 
   std::string addNode(const std::vector<std::string> &values = {});
+  std::string addNode(std::initializer_list<int> values = {});
+
   void addEdge(const std::string &from, const std::string &to, int label);
-  void addEdge(const std::string &from, const std::string &to, const std::string& label);
+  void addEdge(const std::string &from, const std::string &to,
+               const std::string &label);
   void addEdge(const std::string &from, const std::string &to);
+  void popEdge();
 
   std::string toDot() const;
-  bool writeToFile(const std::string &path) const;
+  bool writeToFile(const std::string &path);
+  bool exportSvg(const std::string &path) const;
 };
 } // namespace algkit

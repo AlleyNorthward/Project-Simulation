@@ -1,4 +1,5 @@
 #include "graph.h"
+#include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -73,6 +74,17 @@ Graph &Graph::setEdgeAttr(const std::string &k, const std::string &v) {
   return *this;
 }
 
+std::string Graph::addNode(std::initializer_list<int> values) {
+  std::vector<std::string> v;
+  v.reserve(values.size());
+
+  for (int x : values) {
+    v.push_back(std::to_string(x));
+  }
+
+  return addNode(v);
+}
+
 std::string Graph::addNode(const std::vector<std::string> &values) {
   if (values.size() != infos.size()) {
     throw std::invalid_argument("addNode 参数数量必须和infos一致!");
@@ -107,7 +119,12 @@ std::string Graph::addNode(const std::vector<std::string> &values) {
 }
 
 void Graph::addEdge(const std::string &from, const std::string &to) {
-  edges.push_back(Edge{from, to});
+  auto it = std::find_if(edges.begin(), edges.end(), [&](const Edge &e) {
+    return e.from == from && e.to == to;
+  });
+  if (it == edges.end()) {
+    edges.push_back(Edge{from, to});
+  }
 }
 
 void Graph::addEdge(const std::string &from, const std::string &to, int label) {
@@ -118,6 +135,8 @@ void Graph::addEdge(const std::string &from, const std::string &to,
                     const std::string &label) {
   edges.push_back(Edge{from, to, label});
 }
+
+void Graph::popEdge() { edges.pop_back(); }
 
 std::string Graph::toDot() const {
   std::stringstream ss;
@@ -149,12 +168,24 @@ std::string Graph::toDot() const {
   return ss.str();
 }
 
-bool Graph::writeToFile(const std::string &path) const {
+bool Graph::writeToFile(const std::string &path) {
+  this->dotPath = path;
   std::ofstream fout(path);
   if (!fout)
     return false;
   fout << toDot();
   return true;
+}
+
+bool Graph::exportSvg(const std::string &path) const {
+  if (this->dotPath.empty())
+    throw std::invalid_argument("dotPath未设置, 无法生成svg!");
+
+  std::stringstream ss;
+  ss << "dot -Tsvg " << this->dotPath << " -o " << path;
+  std::string cmd = ss.str();
+  int ret = std::system(cmd.c_str());
+  return ret == 0;
 }
 
 std::string Graph::genId() { return std::to_string(++counter); }
@@ -166,4 +197,5 @@ int Graph::sum() {
   }
   return s;
 }
+
 } // namespace algkit
