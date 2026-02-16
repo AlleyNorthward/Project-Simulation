@@ -17,12 +17,12 @@ struct AttrMap {
 struct Node {
   std::string name;
   std::string label;
-  AttrMap attrs;
 };
 
 struct Edge {
-  std::string from, to;
-  AttrMap attrs;
+  std::string from;
+  std::string to;
+  std::string label;
 };
 
 class Graph {
@@ -51,9 +51,9 @@ public:
   Graph &setEdgeAttr(const std::string &k, const std::string &v);
 
   std::string addNode(const std::vector<std::string> &values = {});
+  void addEdge(const std::string &from, const std::string &to, int label);
+  void addEdge(const std::string &from, const std::string &to, const std::string& label);
   void addEdge(const std::string &from, const std::string &to);
-  void addEdge(const std::string &from, const std::string &to,
-               const AttrMap &attrs);
 
   std::string toDot() const;
   bool writeToFile(const std::string &path) const;

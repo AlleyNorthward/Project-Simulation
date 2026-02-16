@@ -39,6 +39,8 @@ Graph::Graph(const std::vector<std::string> &infos_,
   this->setGraphAttr("rankdir", "TB")
       .setEdgeAttr("color", "#8383cc")
       .setEdgeAttr("penwidth", "2")
+      .setEdgeAttr("fontcolor", "#9c4a4a")
+      .setEdgeAttr("fontsize", "10")
       .setNodeAttr("shape", "record")
       .setNodeAttr("fontname", "Consolas")
       .setNodeAttr("fontcolor", "black")
@@ -100,17 +102,21 @@ std::string Graph::addNode(const std::vector<std::string> &values) {
   label << "}";
 
   std::string name = "node" + id;
-  nodes.push_back(Node{name, label.str(), AttrMap()});
+  nodes.push_back(Node{name, label.str()});
   return name;
 }
 
 void Graph::addEdge(const std::string &from, const std::string &to) {
-  edges.push_back(Edge{from, to, AttrMap()});
+  edges.push_back(Edge{from, to});
+}
+
+void Graph::addEdge(const std::string &from, const std::string &to, int label) {
+  edges.push_back(Edge{from, to, std::to_string(label)});
 }
 
 void Graph::addEdge(const std::string &from, const std::string &to,
-                    const AttrMap &attrs) {
-  edges.push_back(Edge{from, to, attrs});
+                    const std::string &label) {
+  edges.push_back(Edge{from, to, label});
 }
 
 std::string Graph::toDot() const {
@@ -128,8 +134,6 @@ std::string Graph::toDot() const {
   for (const auto &n : nodes) {
     ss << "  " << n.name << " [label=";
     ss << AttrMap::quoteIfNeeded(n.label);
-    if (!n.attrs.empty())
-      ss << ", " << n.attrs.toDot();
     ss << "]\n";
   }
 
@@ -138,9 +142,8 @@ std::string Graph::toDot() const {
   std::string arrow = directed ? " -> " : " -- ";
   for (const auto &e : edges) {
     ss << "  " << e.from << arrow << e.to;
-    if (!e.attrs.empty())
-      ss << "[" << e.attrs.toDot() << "]";
-    ss << ";\n";
+    ss << " [label=" << AttrMap::quoteIfNeeded(e.label);
+    ss << "];\n";
   }
   ss << "}\n";
   return ss.str();
