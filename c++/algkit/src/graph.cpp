@@ -37,7 +37,6 @@ Graph::Graph(const std::vector<std::string> &infos_,
     : name(std::move(name_)), directed(directed_), counter(0), infos(infos_),
       layer_count(layer_count_) {
   this->setGraphAttr("rankdir", "TB")
-      .setEdgeAttr("arrowhead", "none")
       .setEdgeAttr("color", "#8383cc")
       .setEdgeAttr("penwidth", "2")
       .setNodeAttr("shape", "record")
@@ -47,6 +46,9 @@ Graph::Graph(const std::vector<std::string> &infos_,
       .setNodeAttr("fillcolor", "#b2d3e4")
       .setNodeAttr("style", "filled")
       .setNodeAttr("penwidth", "2");
+
+  if (!directed)
+    this->setEdgeAttr("arrowhead", "none");
 
   if (this->sum() != static_cast<int>(infos.size())) {
     throw std::invalid_argument(
