@@ -43,14 +43,14 @@ private:
 
 public:
   Graph(const std::vector<std::string> &infos_,
-        const std::vector<int> &layer_count_, std::string name_ = "G",
-        bool directed_ = true);
+        const std::vector<int> &layer_count_, bool directed_ = false,
+        std::string name_ = "G");
 
   Graph &setGraphAttr(const std::string &k, const std::string &v);
   Graph &setNodeAttr(const std::string &k, const std::string &v);
   Graph &setEdgeAttr(const std::string &k, const std::string &v);
 
-  std::string addNode(const std::vector<std::string> & values = {});
+  std::string addNode(const std::vector<std::string> &values = {});
   void addEdge(const std::string &from, const std::string &to);
   void addEdge(const std::string &from, const std::string &to,
                const AttrMap &attrs);

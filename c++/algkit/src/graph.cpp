@@ -32,8 +32,8 @@ std::string AttrMap::quoteIfNeeded(const std::string &v) {
 }
 
 Graph::Graph(const std::vector<std::string> &infos_,
-             const std::vector<int> &layer_count_, std::string name_,
-             bool directed_)
+             const std::vector<int> &layer_count_, bool directed_,
+             std::string name_)
     : name(std::move(name_)), directed(directed_), counter(0), infos(infos_),
       layer_count(layer_count_) {
   this->setGraphAttr("rankdir", "TB")
