@@ -1,5 +1,4 @@
 #include "graph.h"
-#include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -119,12 +118,7 @@ std::string Graph::addNode(const std::vector<std::string> &values) {
 }
 
 void Graph::addEdge(const std::string &from, const std::string &to) {
-  auto it = std::find_if(edges.begin(), edges.end(), [&](const Edge &e) {
-    return e.from == from && e.to == to;
-  });
-  if (it == edges.end()) {
-    edges.push_back(Edge{from, to});
-  }
+  edges.push_back(Edge{from, to});
 }
 
 void Graph::addEdge(const std::string &from, const std::string &to, int label) {
