@@ -1,4 +1,5 @@
 #include "graph.h"
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -68,12 +69,53 @@ Graph &Graph::setNodeAttr(const std::string &k, const std::string &v) {
   return *this;
 }
 
+Graph &Graph::setColorMapAttr(Color color, std::optional<std::string> k,
+                              std::optional<std::string> v) {
+  if (color == Color::Default)
+    return *this;
+
+  if (k.has_value() && v.has_value()) {
+    colorMap[color].set(k.value(), v.value());
+  }
+  return *this;
+}
+
+void Graph::setColor(Color color) {
+  switch (color) {
+  case Color::Default:
+    // setSingleNodeAttr(color);
+    return;
+  case Color::Orange:
+    this->setColorMapAttr(color, "color", "#ff8c00")
+        .setColorMapAttr(color, "fillcolor", "#ffd8a8");
+    return;
+  case Color::Red:
+    this->setColorMapAttr(color, "color", "#c0392b")
+        .setColorMapAttr(color, "fillcolor", "#f5b7b1");
+    return;
+  default:
+    return;
+  }
+}
+
+void Graph::setNodeColor(const std::string &name, Color color) {
+  setColor(color);
+  for (auto &n : nodes) {
+    if (n.name == name) {
+      n.color = color;
+      return;
+    }
+  }
+
+  throw std::invalid_argument("没有找到: " + name);
+}
+
 Graph &Graph::setEdgeAttr(const std::string &k, const std::string &v) {
   edgeAttrs.set(k, v);
   return *this;
 }
 
-std::string Graph::addNode(std::initializer_list<int> values) {
+std::string Graph::addNode(std::initializer_list<int> values, Color color) {
   std::vector<std::string> v;
   v.reserve(values.size());
 
@@ -81,10 +123,11 @@ std::string Graph::addNode(std::initializer_list<int> values) {
     v.push_back(std::to_string(x));
   }
 
-  return addNode(v);
+  return addNode(v, color);
 }
 
-std::string Graph::addNode(const std::vector<std::string> &values) {
+std::string Graph::addNode(const std::vector<std::string> &values,
+                           Color color) {
   if (values.size() != infos.size()) {
     throw std::invalid_argument("addNode 参数数量必须和infos一致!");
   }
@@ -112,8 +155,10 @@ std::string Graph::addNode(const std::vector<std::string> &values) {
 
   label << "}";
 
+  setColor(color);
+
   std::string name = "node" + id;
-  nodes.push_back(Node{name, label.str()});
+  nodes.push_back(Node{name, label.str(), color});
   return name;
 }
 
@@ -147,6 +192,14 @@ std::string Graph::toDot() const {
   for (const auto &n : nodes) {
     ss << "  " << n.name << " [label=";
     ss << AttrMap::quoteIfNeeded(n.label);
+
+    if (n.color != Color::Default) {
+      auto it = colorMap.find(n.color);
+      if (it != colorMap.end() && !it->second.empty()) {
+        ss << ", " << it->second.toDot();
+      }
+    }
+
     ss << "]\n";
   }
 
@@ -171,14 +224,18 @@ bool Graph::writeToFile(const std::string &path) {
   return true;
 }
 
-bool Graph::exportSvg(const std::string &path) const {
+bool Graph::exportSvg(const std::string &path, bool isdelete) const {
   if (this->dotPath.empty())
     throw std::invalid_argument("dotPath未设置, 无法生成svg!");
 
   std::stringstream ss;
   ss << "dot -Tsvg " << this->dotPath << " -o " << path;
   std::string cmd = ss.str();
+
   int ret = std::system(cmd.c_str());
+  if (ret == 0 && isdelete) {
+    std::filesystem::remove(this->dotPath);
+  }
   return ret == 0;
 }
 
