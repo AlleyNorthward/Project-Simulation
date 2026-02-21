@@ -81,6 +81,9 @@ Graph &Graph::setColorMapAttr(Color color, std::optional<std::string> k,
 }
 
 void Graph::setColor(Color color) {
+  auto it = colorMap.find(color);
+  if(it != colorMap.end()) return;
+
   switch (color) {
   case Color::Default:
     // setSingleNodeAttr(color);
@@ -92,6 +95,26 @@ void Graph::setColor(Color color) {
   case Color::Red:
     this->setColorMapAttr(color, "color", "#c0392b")
         .setColorMapAttr(color, "fillcolor", "#f5b7b1");
+    return;
+  case Color::Green:
+    this->setColorMapAttr(color, "color", "#27ae60")
+        .setColorMapAttr(color, "fillcolor", "#abebc6");
+    return;
+  case Color::Purple:
+    this->setColorMapAttr(color, "color", "#8e44ad")
+        .setColorMapAttr(color, "fillcolor", "#e8daef");
+    return;
+  case Color::Teal:
+    this->setColorMapAttr(color, "color", "#16a085")
+        .setColorMapAttr(color, "fillcolor", "#a3e4d7");
+    return;
+  case Color::Gray:
+    this->setColorMapAttr(color, "color", "#7f8c8d")
+        .setColorMapAttr(color, "fillcolor", "#ecf0f1");
+    return;
+  case Color::Blue:
+    this->setColorMapAttr(color, "color", "#1f4e79")
+        .setColorMapAttr(color, "fillcolor", "#6f9fc7");
     return;
   default:
     return;

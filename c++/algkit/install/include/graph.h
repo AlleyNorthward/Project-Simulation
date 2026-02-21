@@ -20,6 +20,11 @@ enum class Color {
   Default,
   Orange,
   Red,
+  Green,
+  Purple,
+  Teal,
+  Gray,
+  Blue
 };
 
 struct Node {
