@@ -1,43 +1,9 @@
 #pragma once
 
-#include <map>
-#include <optional>
-#include <string>
-#include <unordered_map>
+#include "common.h"
 #include <vector>
 
 namespace algkit {
-struct AttrMap {
-  std::unordered_map<std::string, std::string> m;
-
-  void set(const std::string &k, const std::string &v);
-  bool empty() const;
-  std::string toDot() const;
-  static std::string quoteIfNeeded(const std::string &v);
-};
-
-enum class Color {
-  Default,
-  Orange,
-  Red,
-  Green,
-  Purple,
-  Teal,
-  Gray,
-  Blue
-};
-
-struct Node {
-  std::string name;
-  std::string label;
-  Color color;
-};
-
-struct Edge {
-  std::string from;
-  std::string to;
-  std::string label;
-};
 
 class Graph {
 private:
@@ -52,7 +18,7 @@ private:
   std::vector<std::string> infos;
   std::vector<int> layer_count;
   std::string dotPath = "";
-  std::map<Color, AttrMap> colorMap;
+  Color_ colorMap;
 
   std::string genId();
   int sum();
@@ -61,10 +27,12 @@ private:
   Graph &setGraphAttr(const std::string &k, const std::string &v);
   Graph &setNodeAttr(const std::string &k, const std::string &v);
   Graph &setEdgeAttr(const std::string &k, const std::string &v);
-  Graph &setColorMapAttr(Color color,
-                         std::optional<std::string> k = std::nullopt,
-                         std::optional<std::string> v = std::nullopt);
+  Graph &setColorMapAttr(Color color, const std::string &k,
+                         const std::string &v);
+
   void setColor(Color color = Color::Default);
+  std::string toDot() const;
+
 public:
   Graph(const std::vector<std::string> &infos_,
         const std::vector<int> &layer_count_, bool directed_ = false,
@@ -82,7 +50,6 @@ public:
   void addEdge(const std::string &from, const std::string &to);
   void popEdge();
 
-  std::string toDot() const;
   bool writeToFile(const std::string &path);
   bool exportSvg(const std::string &path, bool isdelete = false) const;
 };

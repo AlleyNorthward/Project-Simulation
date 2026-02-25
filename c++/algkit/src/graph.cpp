@@ -6,32 +6,6 @@
 #include <utility>
 
 namespace algkit {
-void AttrMap::set(const std::string &k, const std::string &v) { m[k] = v; }
-
-bool AttrMap::empty() const { return m.empty(); }
-
-std::string AttrMap::toDot() const {
-  if (empty())
-    return "";
-  std::string s;
-  bool first = true;
-
-  for (const auto &p : m) {
-    if (!first)
-      s += ", ";
-    first = false;
-    s += p.first + "=" + quoteIfNeeded(p.second);
-  }
-  return s;
-}
-
-std::string AttrMap::quoteIfNeeded(const std::string &v) {
-  std::string out = "\"";
-  out += v;
-  out += "\"";
-  return out;
-}
-
 Graph::Graph(const std::vector<std::string> &infos_,
              const std::vector<int> &layer_count_, bool directed_,
              std::string name_)
@@ -69,20 +43,19 @@ Graph &Graph::setNodeAttr(const std::string &k, const std::string &v) {
   return *this;
 }
 
-Graph &Graph::setColorMapAttr(Color color, std::optional<std::string> k,
-                              std::optional<std::string> v) {
+Graph &Graph::setColorMapAttr(Color color, const std::string &k,
+                              const std::string &v) {
   if (color == Color::Default)
     return *this;
 
-  if (k.has_value() && v.has_value()) {
-    colorMap[color].set(k.value(), v.value());
-  }
+  colorMap.set(color, k, v);
   return *this;
 }
 
 void Graph::setColor(Color color) {
-  auto it = colorMap.find(color);
-  if(it != colorMap.end()) return;
+  auto it = colorMap.colorMap.find(color);
+  if (it != colorMap.colorMap.end())
+    return;
 
   switch (color) {
   case Color::Default:
@@ -217,8 +190,8 @@ std::string Graph::toDot() const {
     ss << AttrMap::quoteIfNeeded(n.label);
 
     if (n.color != Color::Default) {
-      auto it = colorMap.find(n.color);
-      if (it != colorMap.end() && !it->second.empty()) {
+      auto it = colorMap.colorMap.find(n.color);
+      if (it != colorMap.colorMap.end() && !it->second.empty()) {
         ss << ", " << it->second.toDot();
       }
     }
