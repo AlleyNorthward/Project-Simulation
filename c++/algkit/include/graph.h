@@ -32,6 +32,8 @@ private:
 
   void setColor(Color color = Color::Default);
   std::string toDot() const;
+  std::string getLabel(const std::string &id,
+                       const std::vector<std::string> &values) const;
 
 public:
   Graph(const std::vector<std::string> &infos_,
@@ -39,6 +41,10 @@ public:
         std::string name_ = "G");
 
   void setNodeColor(const std::string &name, Color color);
+  void setNodeInfo(const std::string &name,
+                   const std::vector<std::string> &values);
+  void setNodeInfoAndColor(const std::string &name,
+                           const std::vector<std::string> &values, Color color);
   std::string addNode(const std::vector<std::string> &values = {},
                       Color color = Color::Default);
   std::string addNode(std::initializer_list<int> values = {},

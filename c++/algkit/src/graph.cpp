@@ -105,6 +105,34 @@ void Graph::setNodeColor(const std::string &name, Color color) {
   throw std::invalid_argument("没有找到: " + name);
 }
 
+void Graph::setNodeInfo(const std::string &name,
+                        const std::vector<std::string> &values) {
+  for (auto &n : nodes) {
+    if (n.name == name) {
+      std::string id = name.substr(4);
+      std::string label = this->getLabel(id, values);
+      n.label = label;
+      return;
+    }
+  }
+  throw std::invalid_argument("没有找到: " + name);
+}
+
+void Graph::setNodeInfoAndColor(const std::string &name,
+                                const std::vector<std::string> &values,
+                                Color color) {
+  for (auto &n : nodes) {
+    if (n.name == name) {
+      std::string id = name.substr(4);
+      std::string label = this->getLabel(id, values);
+      n.label = label;
+      n.color = color;
+      return;
+    }
+  }
+  throw std::invalid_argument("没有找到: " + name);
+}
+
 Graph &Graph::setEdgeAttr(const std::string &k, const std::string &v) {
   edgeAttrs.set(k, v);
   return *this;
@@ -121,14 +149,9 @@ std::string Graph::addNode(std::initializer_list<int> values, Color color) {
   return addNode(v, color);
 }
 
-std::string Graph::addNode(const std::vector<std::string> &values,
-                           Color color) {
-  if (values.size() != infos.size()) {
-    throw std::invalid_argument("addNode 参数数量必须和infos一致!");
-  }
-
+std::string Graph::getLabel(const std::string &id,
+                            const std::vector<std::string> &values) const {
   int offset = 0;
-  std::string id = genId();
   std::stringstream label;
   label << "{step" << id;
 
@@ -150,10 +173,21 @@ std::string Graph::addNode(const std::vector<std::string> &values,
 
   label << "}";
 
+  return label.str();
+}
+
+std::string Graph::addNode(const std::vector<std::string> &values,
+                           Color color) {
+  if (values.size() != infos.size()) {
+    throw std::invalid_argument("addNode 参数数量必须和infos一致!");
+  }
+
+  std::string id = genId();
+  std::string label = this->getLabel(id, values);
   setColor(color);
 
   std::string name = "node" + id;
-  nodes.push_back(Node{name, label.str(), color});
+  nodes.push_back(Node{name, label, color});
   return name;
 }
 
