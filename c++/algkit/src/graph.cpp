@@ -121,6 +121,7 @@ void Graph::setNodeInfo(const std::string &name,
 void Graph::setNodeInfoAndColor(const std::string &name,
                                 const std::vector<std::string> &values,
                                 Color color) {
+  setColor(color);
   for (auto &n : nodes) {
     if (n.name == name) {
       std::string id = name.substr(4);
