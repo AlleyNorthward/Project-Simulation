@@ -59,7 +59,6 @@ void Graph::setColor(Color color) {
 
   switch (color) {
   case Color::Default:
-    // setSingleNodeAttr(color);
     return;
   case Color::Orange:
     this->setColorMapAttr(color, "color", "#ff8c00")

@@ -47,10 +47,7 @@ std::string AttrMap::quoteIfNeeded(const std::string &v) {
   return out;
 }
 
-void Color_::set(Color color, const std::string &k, const std::string &v,
-                 bool hasdefault) {
-  if (hasdefault)
-    return;
+void Color_::set(Color color, const std::string &k, const std::string &v) {
   colorMap[color].set(k, v);
 }
 

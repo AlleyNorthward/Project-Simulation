@@ -23,7 +23,7 @@ Matrix &Matrix::setTableAttr(const std::string &k, const std::string &v) {
 
 void Matrix::setColorMapAttr(Color color, const std::string &k,
                              const std::string &v) {
-  colorMap.set(color, k, v, false);
+  colorMap.set(color, k, v);
 }
 
 void Matrix::setColor(Color color) {

@@ -19,7 +19,7 @@ enum class Color { Default, Orange, Red, Green, Purple, Teal, Gray, Blue };
 
 struct Color_ {
   std::map<Color, AttrMap> colorMap;
-  void set(Color color, const std::string &k, const std::string &v, bool hasdefault = true);
+  void set(Color color, const std::string &k, const std::string &v);
 };
 
 struct Node {
