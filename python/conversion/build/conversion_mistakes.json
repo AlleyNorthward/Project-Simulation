@@ -1,0 +1,62 @@
+{
+  "wrong_questions": [
+    {
+      "index": 9,
+      "source_text": "0xf",
+      "expected_answer": "15",
+      "user_input": "f",
+      "elapsed_seconds": 1.039991,
+      "current_average_before_seconds": 5.318983
+    }
+  ],
+  "timeout_questions": [
+    {
+      "index": 2,
+      "source_text": "13",
+      "expected_answer": "0xd",
+      "user_input": "d",
+      "elapsed_seconds": 7.39928,
+      "current_average_before_seconds": 4.191737
+    },
+    {
+      "index": 3,
+      "source_text": "0b0110",
+      "expected_answer": "0x6",
+      "user_input": "6",
+      "elapsed_seconds": 9.560404,
+      "current_average_before_seconds": 5.795508
+    },
+    {
+      "index": 12,
+      "source_text": "15",
+      "expected_answer": "0xf",
+      "user_input": "f",
+      "elapsed_seconds": 7.568955,
+      "current_average_before_seconds": 4.909059
+    },
+    {
+      "index": 13,
+      "source_text": "13",
+      "expected_answer": "0b1101",
+      "user_input": "1101",
+      "elapsed_seconds": 12.812549,
+      "current_average_before_seconds": 5.130717
+    },
+    {
+      "index": 15,
+      "source_text": "10",
+      "expected_answer": "0b1010",
+      "user_input": "1010",
+      "elapsed_seconds": 16.349533,
+      "current_average_before_seconds": 5.635237
+    },
+    {
+      "index": 16,
+      "source_text": "4",
+      "expected_answer": "0b0100",
+      "user_input": "0100",
+      "elapsed_seconds": 11.077152,
+      "current_average_before_seconds": 6.349523
+    }
+  ]
+}

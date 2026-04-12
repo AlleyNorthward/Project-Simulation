@@ -4,8 +4,7 @@ import time
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
-
+from typing import Any, Dict, Optional
 
 MIN_VALUE = 0
 MAX_VALUE = 15
@@ -15,18 +14,14 @@ HISTORY_FILE = Path("./build/conversion_history.json")
 MISTAKE_FILE = Path("./build/conversion_mistakes.json")
 SLOW_TIME_THRESHOLD = 3.0
 
-
 def to_hex(n: int) -> str:
     return f"0x{n:x}"
-
 
 def to_bin(n: int) -> str:
     return f"0b{n:04b}"
 
-
 def to_dec(n: int) -> str:
     return str(n)
-
 
 def base_to_key(base_text: str) -> Optional[str]:
     base_text = base_text.strip().lower()
@@ -38,10 +33,8 @@ def base_to_key(base_text: str) -> Optional[str]:
         return "hex"
     return None
 
-
 def key_to_label(key: str) -> str:
     return {"bin": "2", "dec": "10", "hex": "16"}[key]
-
 
 def normalize_answer(text: str, base: str) -> str:
     s = text.strip().lower().replace(" ", "")
@@ -70,7 +63,6 @@ def normalize_answer(text: str, base: str) -> str:
 
     return s
 
-
 def get_mode():
     while True:
         mode = input("请输入模式, 例如 2 10 / 10 2 / 16 10 / 2 16 / all: ").strip().lower()
@@ -87,7 +79,6 @@ def get_mode():
                 return "fixed", src, dst
 
         print("输入无效, 请重新输入. 比如: 2 10、10 2、16 10、2 16、all")
-
 
 @dataclass
 class QuestionResult:
@@ -112,7 +103,6 @@ class QuestionResult:
 
         return self.elapsed_seconds > self.current_average_before_seconds * 1.3
 
-
 class JsonStore:
     def __init__(self, path: Path) -> None:
         self.path = path
@@ -130,7 +120,6 @@ class JsonStore:
     def save(self, data: Any) -> None:
         with self.path.open("w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-
 
 class TrainingHistoryStore(JsonStore):
     def __init__(self, path: Path) -> None:
@@ -167,16 +156,14 @@ class TrainingHistoryStore(JsonStore):
 
         return max(numeric_keys, default=0) + 1
 
-
 class MistakeStore(JsonStore):
     def __init__(self, path: Path) -> None:
         super().__init__(path)
-        self.data: Dict[str, List[Dict[str, Any]]] = self.load(
-            default={
-                "wrong_questions": [],
-                "timeout_questions": [],
-            }
-        )
+
+        self.data = {
+            "wrong_questions": [],
+            "timeout_questions": [],
+        }
 
         if "wrong_questions" not in self.data:
             self.data["wrong_questions"] = []
@@ -201,7 +188,6 @@ class MistakeStore(JsonStore):
     def add_timeout(self, result: QuestionResult) -> None:
         self.data["timeout_questions"].append(self._minimal_record(result))
         self.save(self.data)
-
 
 class ConversionQuiz:
     def __init__(self) -> None:
@@ -228,6 +214,11 @@ class ConversionQuiz:
             return src, dst
         return self.fixed_src, self.fixed_dst
 
+    def generate_value(self, src: str, dst: str) -> int:
+        if (src == "hex" and dst == "dec") or (src == "dec" and dst == "hex"):
+            return random.randint(10, MAX_VALUE)
+        return random.randint(MIN_VALUE, MAX_VALUE)
+
     def run(self) -> None:
         start_dt = datetime.now()
         start_time_text = start_dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -238,8 +229,8 @@ class ConversionQuiz:
         print("-" * 40)
 
         for i in range(1, TOTAL_QUESTIONS + 1):
-            value = random.randint(MIN_VALUE, MAX_VALUE)
             src, dst = self.choose_pair()
+            value = self.generate_value(src, dst)
 
             src_text = self.converters[src](value)
             expected = self.converters[dst](value)
@@ -302,11 +293,9 @@ class ConversionQuiz:
         print(f"平均每题: {self.total_time / TOTAL_QUESTIONS:.3f} 秒")
         print(f"结果已保存到: {HISTORY_FILE} 和 {MISTAKE_FILE}")
 
-
 def main():
     quiz = ConversionQuiz()
     quiz.run()
-
 
 if __name__ == "__main__":
     main()

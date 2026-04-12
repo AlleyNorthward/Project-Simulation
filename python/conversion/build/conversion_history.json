@@ -1,0 +1,164 @@
+{
+  "2 10": {
+    "1": {
+      "current_time": "2026-04-12 18:09:25",
+      "finish_time": "2026-04-12 18:11:49",
+      "total_time": 144.656755,
+      "correct_count": 99
+    },
+    "2": {
+      "current_time": "2026-04-12 18:24:38",
+      "finish_time": "2026-04-12 18:27:08",
+      "total_time": 150.734942,
+      "correct_count": 96
+    },
+    "3": {
+      "current_time": "2026-04-12 18:38:30",
+      "finish_time": "2026-04-12 18:40:39",
+      "total_time": 129.048588,
+      "correct_count": 98
+    },
+    "4": {
+      "current_time": "2026-04-12 18:42:42",
+      "finish_time": "2026-04-12 18:44:45",
+      "total_time": 122.737129,
+      "correct_count": 99
+    },
+    "5": {
+      "current_time": "2026-04-12 18:54:09",
+      "finish_time": "2026-04-12 18:56:13",
+      "total_time": 123.28836,
+      "correct_count": 97
+    },
+    "6": {
+      "current_time": "2026-04-12 18:59:27",
+      "finish_time": "2026-04-12 19:01:46",
+      "total_time": 139.25101,
+      "correct_count": 95
+    },
+    "7": {
+      "current_time": "2026-04-12 19:02:48",
+      "finish_time": "2026-04-12 19:04:55",
+      "total_time": 126.531196,
+      "correct_count": 98
+    }
+  },
+  "10 2": {
+    "1": {
+      "current_time": "2026-04-12 19:06:03",
+      "finish_time": "2026-04-12 19:12:21",
+      "total_time": 377.523517,
+      "correct_count": 95
+    },
+    "2": {
+      "current_time": "2026-04-12 19:29:22",
+      "finish_time": "2026-04-12 19:33:41",
+      "total_time": 258.926722,
+      "correct_count": 98
+    },
+    "3": {
+      "current_time": "2026-04-12 19:48:04",
+      "finish_time": "2026-04-12 19:51:20",
+      "total_time": 195.183924,
+      "correct_count": 99
+    },
+    "4": {
+      "current_time": "2026-04-12 20:06:32",
+      "finish_time": "2026-04-12 20:09:40",
+      "total_time": 188.409425,
+      "correct_count": 100
+    },
+    "5": {
+      "current_time": "2026-04-12 20:17:24",
+      "finish_time": "2026-04-12 20:20:13",
+      "total_time": 168.677409,
+      "correct_count": 100
+    },
+    "6": {
+      "current_time": "2026-04-12 20:43:10",
+      "finish_time": "2026-04-12 20:46:00",
+      "total_time": 170.671135,
+      "correct_count": 100
+    },
+    "7": {
+      "current_time": "2026-04-12 20:47:15",
+      "finish_time": "2026-04-12 20:49:57",
+      "total_time": 162.490844,
+      "correct_count": 99
+    }
+  },
+  "16 10": {
+    "1": {
+      "current_time": "2026-04-12 21:10:55",
+      "finish_time": "2026-04-12 21:12:55",
+      "total_time": 119.218202,
+      "correct_count": 97
+    }
+  },
+  "10 16": {
+    "1": {
+      "current_time": "2026-04-12 21:14:36",
+      "finish_time": "2026-04-12 21:16:41",
+      "total_time": 124.570829,
+      "correct_count": 97
+    },
+    "2": {
+      "current_time": "2026-04-12 21:17:15",
+      "finish_time": "2026-04-12 21:18:57",
+      "total_time": 102.15387,
+      "correct_count": 97
+    },
+    "3": {
+      "current_time": "2026-04-12 21:19:06",
+      "finish_time": "2026-04-12 21:20:49",
+      "total_time": 102.436756,
+      "correct_count": 98
+    },
+    "4": {
+      "current_time": "2026-04-12 21:20:56",
+      "finish_time": "2026-04-12 21:22:44",
+      "total_time": 108.105543,
+      "correct_count": 98
+    }
+  },
+  "16 2": {
+    "1": {
+      "current_time": "2026-04-12 21:23:54",
+      "finish_time": "2026-04-12 21:27:54",
+      "total_time": 240.586081,
+      "correct_count": 97
+    },
+    "2": {
+      "current_time": "2026-04-12 21:30:12",
+      "finish_time": "2026-04-12 21:33:32",
+      "total_time": 199.716345,
+      "correct_count": 100
+    },
+    "3": {
+      "current_time": "2026-04-12 21:34:34",
+      "finish_time": "2026-04-12 21:37:31",
+      "total_time": 177.08172,
+      "correct_count": 98
+    },
+    "4": {
+      "current_time": "2026-04-12 21:37:37",
+      "finish_time": "2026-04-12 21:40:17",
+      "total_time": 159.833903,
+      "correct_count": 93
+    },
+    "5": {
+      "current_time": "2026-04-12 21:40:35",
+      "finish_time": "2026-04-12 21:43:31",
+      "total_time": 176.479555,
+      "correct_count": 94
+    }
+  },
+  "2 16": {
+    "1": {
+      "current_time": "2026-04-12 21:43:49",
+      "finish_time": "2026-04-12 21:47:38",
+      "total_time": 229.147746,
+      "correct_count": 97
+    }
+  }
+}
