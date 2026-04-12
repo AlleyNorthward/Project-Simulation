@@ -11,8 +11,8 @@ MIN_VALUE = 0
 MAX_VALUE = 15
 TOTAL_QUESTIONS = 100
 
-HISTORY_FILE = Path("conversion_history.json")
-MISTAKE_FILE = Path("conversion_mistakes.json")
+HISTORY_FILE = Path("./build/conversion_history.json")
+MISTAKE_FILE = Path("./build/conversion_mistakes.json")
 SLOW_TIME_THRESHOLD = 3.0
 
 
