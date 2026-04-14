@@ -1,4 +1,5 @@
 #include "CPU.h"
+#include "algorithm"
 
 namespace sdust {
 RegisterView CPU::view(const std::string &name) {
@@ -7,10 +8,17 @@ RegisterView CPU::view(const std::string &name) {
 
 uint32_t CPU::read(const std::string &name) const {
   const RegDesc *desc = desc_.find(name);
+
   if (!desc)
     throw std::runtime_error("unknown reg");
 
-  auto &reg = const_cast<RegisterFile &>(regs_).get_or_create(desc->base);
+  const uint32_t *reg_ptr = regs_.get(desc->base);
+
+  if (!reg_ptr) {
+    throw std::runtime_error("base register not initialized");
+  }
+
+  uint32_t reg = *reg_ptr;
 
   uint32_t mask =
       (desc->slice.width == 32) ? 0xFFFFFFFFu : ((1u << desc->slice.width) - 1);
@@ -31,11 +39,18 @@ void CPU::write(const std::string &name, uint32_t value) {
   uint32_t clearMask = ~(mask << desc->slice.lsb);
   reg = (reg & clearMask) | ((value & mask) << desc->slice.lsb);
 
-  notify();
+  if (isnotify) {
+    std::cout << "notify called" << std::endl;
+    notify();
+    std::cout << "notify called finish" << std::endl;
+  }
 }
 
-std::unordered_map<std::string, uint32_t> CPU::dump() const {
-  return regs_.snapshot();
+void CPU::beginUpdate() { isnotify = false; }
+
+void CPU::endUpdate() {
+  isnotify = true;
+  notify();
 }
 
 void CPU::attach(Observer *o) { observers.push_back(o); }
@@ -45,8 +60,9 @@ void CPU::detach(Observer *o) {
 }
 
 void CPU::notify() {
+  auto snapshot = regs_.snapshot();
   for (auto *o : observers) {
-    o->update(this);
+    o->update(snapshot);
   }
 }
 

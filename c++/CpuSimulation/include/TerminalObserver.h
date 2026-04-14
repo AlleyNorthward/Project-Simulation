@@ -2,13 +2,12 @@
 #define TERMINALOBSERVER_H
 
 #include "Observer.h"
-#include "CPU.h"
 
 namespace sdust{
 
 class TerminalObserver: public Observer{
 public:
-  void update(Subject* sub);
+  void update(const std::unordered_map<std::string, uint32_t>& snapshot);
 };
 
 }

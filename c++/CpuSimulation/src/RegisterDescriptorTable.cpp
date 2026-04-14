@@ -1,4 +1,5 @@
 #include "RegisterDescriptorTable.h"
+#include <cctype>
 
 namespace sdust {
 

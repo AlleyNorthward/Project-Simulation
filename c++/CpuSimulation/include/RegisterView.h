@@ -2,6 +2,7 @@
 #define REGISTERVIEW_H
 
 #include <iostream>
+#include <cstdint>
 
 namespace sdust {
 

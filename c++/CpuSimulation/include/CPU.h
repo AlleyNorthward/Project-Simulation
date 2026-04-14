@@ -14,14 +14,21 @@ private:
   RegisterFile regs_;
   RegisterDescriptorTable desc_;
   std::vector<Observer *> observers;
+  bool isnotify = false;
 
 public:
   RegisterView view(const std::string &name);
-  RegisterDescriptorTable &desc() { return desc_; }
   uint32_t read(const std::string &name) const;
   void write(const std::string &name, uint32_t value);
-  std::unordered_map<std::string, uint32_t> dump() const;
 
+public:
+  RegisterDescriptorTable &desc() { return desc_; }
+  std::unordered_map<std::string, uint32_t> dump() const { return regs_.snapshot(); }
+
+  void beginUpdate();
+  void endUpdate();
+
+public:
   void attach(Observer *o) override;
   void detach(Observer *o) override;
   void notify() override;

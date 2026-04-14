@@ -5,13 +5,12 @@
 namespace sdust {
 
 void CpuSimulationLib::run() {
+  initCpu();
   configRegister();
 
   while (1) {
-    {
-      std::lock_guard<std::mutex> lock(mtx);
-      regStr->change();
-    }
+    regStr->change();
+    changeRegStr();
     refreshTime();
   }
 }
