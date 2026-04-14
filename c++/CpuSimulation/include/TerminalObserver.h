@@ -3,25 +3,13 @@
 
 #include "Observer.h"
 
-namespace sdust{
+namespace sdust {
 
-class TerminalObserver: public Observer{
+class TerminalObserver : public Observer {
 public:
-  void update(const std::unordered_map<std::string, uint32_t>& snapshot);
+  void update(const std::unordered_map<std::string, uint32_t> &snapshot);
 };
 
-}
+} // namespace sdust
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-

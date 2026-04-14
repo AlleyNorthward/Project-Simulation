@@ -1,8 +1,8 @@
 #ifndef REGISTERVIEW_H
 #define REGISTERVIEW_H
 
-#include <iostream>
 #include <cstdint>
+#include <iostream>
 
 namespace sdust {
 

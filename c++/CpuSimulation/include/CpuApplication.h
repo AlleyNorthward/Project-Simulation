@@ -1,23 +1,23 @@
 #ifndef CPUAPPLICATION_H
 #define CPUAPPLICATION_H
 
-#include <CpuSimulationLib.h>
-#include <CPU.h>
 #include "TerminalObserver.h"
+#include <CPU.h>
+#include <CpuSimulationLib.h>
 
 namespace sdust {
 
 class CpuApplication : public CpuSimulationLib {
 private:
-  CPU* cpu;
-  TerminalObserver* to;
+  CPU *cpu;
+  TerminalObserver *to;
 
-  RegisterChangeStrategy* iStra;
-  RegisterChangeStrategy* aStra;
-  RegisterChangeStrategy* mStra;
-  RegisterChangeStrategy* rStra;
+  RegisterChangeStrategy *iStra;
+  RegisterChangeStrategy *aStra;
+  RegisterChangeStrategy *mStra;
+  RegisterChangeStrategy *rStra;
 
-  std::vector<RegisterChangeStrategy*> strategies;
+  std::vector<RegisterChangeStrategy *> strategies;
   int idx;
 
 public:

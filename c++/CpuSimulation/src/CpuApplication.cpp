@@ -1,12 +1,16 @@
 #include "CpuApplication.h"
-#include "IncrementAllStrategy.h"
-#include "RandomNoiseStrategy.h"
 #include "AddStrategy.h"
+#include "IncrementAllStrategy.h"
 #include "MoveStrategy.h"
+#include "RandomNoiseStrategy.h"
+#include <windows.h>
 
 namespace sdust {
 
 void CpuApplication::initCpu() {
+  SetConsoleOutputCP(CP_UTF8);
+  SetConsoleCP(CP_UTF8);
+
   cpu = new CPU;
   to = new TerminalObserver;
   cpu->attach(to);
@@ -52,7 +56,7 @@ void CpuApplication::configRegister() {
   cpu->desc().add("ESP", "ESP", {0, 32});
   cpu->desc().add("SP", "ESP", {0, 16});
   cpu->write("ESP", 0);
-  
+
   cpu->desc().add("EIP", "EIP", {0, 32});
   cpu->write("EIP", 0);
 

@@ -1,10 +1,8 @@
 #include "CpuApplication.h"
 #include "CpuSimulationLib.h"
 
-#define LOG_ENABLE
-
 int main() {
-  sdust::CpuSimulationLib* cpu = new sdust::CpuApplication;
+  sdust::CpuSimulationLib *cpu = new sdust::CpuApplication;
   cpu->run();
 
   delete cpu;

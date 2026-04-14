@@ -9,7 +9,7 @@
 
 namespace sdust {
 
-class CPU : Subject {
+class CPU :public Subject {
 private:
   RegisterFile regs_;
   RegisterDescriptorTable desc_;
@@ -23,7 +23,9 @@ public:
 
 public:
   RegisterDescriptorTable &desc() { return desc_; }
-  std::unordered_map<std::string, uint32_t> dump() const { return regs_.snapshot(); }
+  std::unordered_map<std::string, uint32_t> dump() const {
+    return regs_.snapshot();
+  }
 
   void beginUpdate();
   void endUpdate();
