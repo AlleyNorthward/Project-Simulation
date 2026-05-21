@@ -1,0 +1,26 @@
+[
+{
+  "directory": "F:/0github/Project-Simulation/c/algvis/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\gcc.exe -IF:/0github/Project-Simulation/c/algvis -std=gnu99 -o CMakeFiles\\algvis.dir\\algvis.c.obj -c F:\\0github\\Project-Simulation\\c\\algvis\\algvis.c",
+  "file": "F:\\0github\\Project-Simulation\\c\\algvis\\algvis.c",
+  "output": "CMakeFiles\\algvis.dir\\algvis.c.obj"
+},
+{
+  "directory": "F:/0github/Project-Simulation/c/algvis/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\gcc.exe -IF:/0github/Project-Simulation/c/algvis -std=gnu99 -o CMakeFiles\\array_sort.dir\\examples\\array_sort.c.obj -c F:\\0github\\Project-Simulation\\c\\algvis\\examples\\array_sort.c",
+  "file": "F:\\0github\\Project-Simulation\\c\\algvis\\examples\\array_sort.c",
+  "output": "CMakeFiles\\array_sort.dir\\examples\\array_sort.c.obj"
+},
+{
+  "directory": "F:/0github/Project-Simulation/c/algvis/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\gcc.exe -IF:/0github/Project-Simulation/c/algvis -std=gnu99 -o CMakeFiles\\matrix_bfs.dir\\examples\\matrix_bfs.c.obj -c F:\\0github\\Project-Simulation\\c\\algvis\\examples\\matrix_bfs.c",
+  "file": "F:\\0github\\Project-Simulation\\c\\algvis\\examples\\matrix_bfs.c",
+  "output": "CMakeFiles\\matrix_bfs.dir\\examples\\matrix_bfs.c.obj"
+},
+{
+  "directory": "F:/0github/Project-Simulation/c/algvis/build",
+  "command": "F:\\Qt\\Qt.6.9\\Tools\\mingw1310_64\\bin\\gcc.exe -IF:/0github/Project-Simulation/c/algvis -std=gnu99 -o CMakeFiles\\graph_trace.dir\\examples\\graph_trace.c.obj -c F:\\0github\\Project-Simulation\\c\\algvis\\examples\\graph_trace.c",
+  "file": "F:\\0github\\Project-Simulation\\c\\algvis\\examples\\graph_trace.c",
+  "output": "CMakeFiles\\graph_trace.dir\\examples\\graph_trace.c.obj"
+}
+]
